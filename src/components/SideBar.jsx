@@ -1,41 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import * as actionCreators from './../actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-function SideBar() {
+
+function SideBar(props) {
+
+    useEffect(() => {
+        props.getAreas()
+    }, [])
+
     return (
         <div className="col-lg-4 col-md-6 widget-area">
             {/* Widget : Latest Post */}
             <aside className="widget widget_latestposts">
                 <h3 className="widget-title">Popular Posts</h3>
-                <div className="latest-content">
-                    <a href="#" title="Recent Posts"><i><img src="http://placehold.it/100x80" className="wp-post-image" alt="blog-1" /></i></a>
-                    <h5><a title="Beautiful Landscape View of Rio de Janeiro" href="#">Beautiful Landscape View of Rio de Janeiro</a></h5>
-                    <span><a href="#">march 14, 2017</a></span>
-                </div>
-                <div className="latest-content">
-                    <a href="#" title="Recent Posts"><i><img src="http://placehold.it/100x80" className="wp-post-image" alt="blog-1" /></i></a>
-                    <h5><a title="Enjoy Your Holiday with Adventures" href="#">Enjoy Your Holiday with Adventures</a></h5>
-                    <span><a href="#">march 15, 2017</a></span>
-                </div>
-                <div className="latest-content">
-                    <a href="#" title="Recent Posts"><i><img src="http://placehold.it/100x80" className="wp-post-image" alt="blog-1" /></i></a>
-                    <h5><a title="Best Photography Experience Shooting" href="#">Best Photography Experience Shooting</a></h5>
-                    <span><a href="#">march 15, 2017</a></span>
-                </div>
-                <div className="latest-content">
-                    <a href="#" title="Recent Posts"><i><img src="http://placehold.it/100x80" className="wp-post-image" alt="blog-1" /></i></a>
-                    <h5><a title="How to Forecast Your Retirement Savings" href="#">How to Forecast Your Retirement Savings</a></h5>
-                    <span><a href="#">march 16, 2017</a></span>
-                </div>
-            </aside>{/* Widget : Latest Post /- */}
+                {
+                    props.news.slice(0, 5).map(n => miniNew(n.imagen, n.titulo, n.createdAt))
+                }
+            </aside>
             {/* Widget : Categories */}
             <aside className="widget widget_categories text-center">
                 <h3 className="widget-title">Categories</h3>
                 <ul>
-                    <li><a href="#" title="Nature">Nature</a></li>
-                    <li><a href="#" title="Technology">Technology</a></li>
-                    <li><a href="#" title="Travel">Travel</a></li>
-                    <li><a href="#" title="Sport">Sport</a></li>
-                    <li><a href="#" title="Lifestyle">Lifestyle</a></li>
+                    {props.areas.map(el => <li><a href="#" title={el}>{el}</a></li>)}
                 </ul>
             </aside>{/* Widget : Categories /- */}
             {/* Widget : Instagram */}
@@ -79,4 +67,25 @@ function SideBar() {
     )
 }
 
-export default SideBar
+function mapStateToProps(state) {
+    return {
+        news: state.news,
+        areas: state.areas
+    }
+}
+
+const mapDispatchToProps = function (dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
+
+function miniNew(imagen, titulo, createdAt) {
+    return (
+        <div className="latest-content">
+            <a href="#" title="Recent Posts"><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></a>
+            <h5><a href="#">{titulo}</a></h5>
+            <span><a href="#">{createdAt.split('T')[0]}</a></span>
+        </div>
+    )
+}

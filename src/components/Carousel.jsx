@@ -1,3 +1,5 @@
+// http://placehold.it/770x500
+// http://placehold.it/396x248
 import React from 'react'
 
 function Carousel() {

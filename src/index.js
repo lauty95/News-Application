@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import { BrowserRouter } from 'react-router-dom';
 import store from './store/'
 import { Provider } from 'react-redux'
+import { SnackbarProvider } from 'notistack';
 
 dotenv.config()
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
@@ -14,9 +15,11 @@ axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <SnackbarProvider maxSnack={1}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

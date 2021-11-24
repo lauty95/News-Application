@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.esconderSeccion {
+  display: none;
+}
+
+.imagenNoticia {
+  width: 100%;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.spacing {
+  margin-left: 20px;
+}
+
+.autor {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+}
+
+.area{
+  margin-bottom: 0;
+}

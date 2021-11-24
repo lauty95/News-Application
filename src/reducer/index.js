@@ -1,14 +1,36 @@
-import { GET_NEWS } from "../components/actions/constants";
+import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY } from "../actions/constants";
 const initialState = {
-    news: []
+    news: [],
+    areas: [],
+    pagina: false,
+    bodyNews: {
+        titulo: '', area: '', descripcion: '', imagen: '', autor: '',
+        noticia: '<h2>Escriba aquí la noticia</h2><h4>Subtitulo</h4><blockquote><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magni temporibus distinctio commodi delectus dolore cum deserunt corrupti necessitatibus sint eum velit in laudantium blanditiis, reprehenderit quisquam atque omnis quam.</p></blockquote><p>Ejemplo de <i>numeración</i></p><ol><li>Primer <a href="#">enlace</a></li><li>Segunda noticia <strong>importante</strong></li><li>Simple texto</li></ol>'
+    },
 };
 
 function reducer(state = initialState, { type, payload }) {
     switch (type) {
         case GET_NEWS:
+            let noticias = payload.sort((a, b) => a.createdAt - b.createdAt)
             return {
                 ...state,
-                news: payload
+                news: noticias.reverse()
+            }
+        case GET_AREAS:
+            return {
+                ...state,
+                areas: payload
+            }
+        case PREVIEW:
+            return {
+                ...state,
+                pagina: payload
+            }
+        case SET_BODY:
+            return {
+                ...state,
+                bodyNews: payload
             }
         default:
             return state

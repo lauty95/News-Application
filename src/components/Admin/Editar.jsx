@@ -1,20 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ReactHtmlParser from 'react-html-parser'
 import axios from 'axios';
-function Main() {
+import { Link } from 'react-router-dom';
+function Editar() {
+    const [areas, setAreas] = useState([])
     const [noticia, setNoticia] = useState('<h2>Escriba aquí la noticia</h2><h4>Subtitulo</h4><blockquote><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magni temporibus distinctio commodi delectus dolore cum deserunt corrupti necessitatibus sint eum velit in laudantium blanditiis, reprehenderit quisquam atque omnis quam.</p></blockquote><p>Ejemplo de <i>numeración</i></p><ol><li>Primer <a href="#">enlace</a></li><li>Segunda noticia <strong>importante</strong></li><li>Simple texto</li></ol>')
-    console.log(noticia)
+    const [data, setData] = useState({
+        titulo: '',
+        area: '',
+        descripcion: '',
+        imagen: '',
+        autor: ''
+    })
 
-    const handleChange = (e, editor) => {
+    useEffect(() => {
+        axios.get('/news/areas')
+            .then(r => setAreas(r.data))
+    }, [])
+
+    const handleChangeNew = (editor) => {
         setNoticia(editor.getData())
     }
+
+    const handleChange = (e) => {
+        setData(prevData => {
+            const newValue = { ...prevData, [e.target.name]: e.target.value }
+            return newValue
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        const body = { noticia, imagen: '' }
+        setData(prevData => {
+            const newValue = { ...prevData, noticia: noticia }
+            return newValue
+        })
+        const body = data
         axios.post('/news/newPost', body)
-            .then(e => alert(e))
+            .then(e => console.log(e))
     }
     return (
         <div>
@@ -30,9 +55,10 @@ function Main() {
                         </a>
 
                         <ul className="br-menu-sub">
-                            <li className="sub-item"><a href="card-dashboard.html" className="sub-link">Dashboard</a></li>
-                            <li className="sub-item"><a href="card-social.html" className="sub-link">Blog &amp; Social Media</a></li>
-                            <li className="sub-item"><a href="card-listing.html" className="sub-link">Shop &amp; Listing</a></li>
+
+                            <li className="sub-item"><Link to="/admin/crear" className="sub-link">Crear Nueva Noticia</Link></li>
+                            <li className="sub-item"><Link to="/admin/editar" className="sub-link">Modificar Noticias</Link></li>
+                            <li className="sub-item"><Link to="/admin/banner" className="sub-link">Modificar Banner</Link></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,30 +85,49 @@ function Main() {
                 <div className="br-pagebody">
                     <div className="br-section-wrapper">
                         <h6 className="br-section-label">Editor de Noticias</h6>
-                            <div className="row mg-b-25">
-                                <div className="col-lg-8">
-                                    <div className="form-group mg-b-10-force">
-                                        {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
-                                        <input className="form-control" type="text" name="titulo" placeholder="Título de la noticia" />
-                                    </div>
-                                </div>{/* col-8 */}
-                                <div className="col-lg-4">
-                                    <div className="form-group mg-b-10-force">
-                                        {/* <label className="form-control-label">Country: <span className="tx-danger">*</span></label> */}
-                                        <select className="form-control select2 selectorArea" data-placeholder="Área">
-                                            <option label="Área" />
-                                            <option value="Mantenimiento">Mantenimiento</option>
-                                            <option value="Tecnología">Tecnología</option>
-                                            <option value="Recursos Humanos">Recursos Humanos</option>
-                                            <option value="Gerencia">Gerencia</option>
-                                        </select>
-                                    </div>
+                        <div className="row mg-b-25">
+                            <div className="col-lg-8">
+                                <div className="form-group mg-b-10-force">
+                                    {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
+                                    <input required className="form-control" type="text" name="titulo" placeholder="Título de la noticia" onChange={handleChange} />
+                                </div>
+                            </div>{/* col-8 */}
+                            <div className="col-lg-4">
+                                <div className="form-group mg-b-10-force">
+                                    {/* <label className="form-control-label">Country: <span className="tx-danger">*</span></label> */}
+                                    <select className="form-control select2 selectorArea" name="area" data-placeholder="Área" onChange={handleChange}>
+                                        <option label="Área" />
+                                        {areas.map(el => <option value="el">{el}</option>)}
+                                    </select>
                                 </div>
                             </div>
+                        </div>
+                        <div className="row mg-b-25">
+                            <div className="col-lg-12">
+                                <div className="form-group mg-b-10-force">
+                                    {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
+                                    <input required className="form-control" type="text" name="descripcion" placeholder="Descripción de la noticia" onChange={handleChange} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row mg-b-25">
+                            <div className="col-lg-4">
+                                <div className="form-group mg-b-10-force">
+                                    {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
+                                    <input required className="form-control" type="text" name="autor" placeholder="Ingrese el autor" onChange={handleChange} />
+                                </div>
+                            </div>
+                            <div className="col-lg-8">
+                                <div className="form-group mg-b-10-force">
+                                    {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
+                                    <input required className="form-control" type="text" name="imagen" placeholder="Ingrese la URL de la imagen" onChange={handleChange} />
+                                </div>
+                            </div>
+                        </div>
                         <CKEditor
                             data={noticia}
                             editor={ClassicEditor}
-                            onChange={handleChange}
+                            onChange={handleChangeNew}
                         />
                         <br />
                         <div class="form-layout-footer">
@@ -106,4 +151,4 @@ function Main() {
     );
 }
 
-export default Main
+export default Editar
