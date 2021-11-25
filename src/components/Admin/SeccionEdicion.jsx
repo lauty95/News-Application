@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import axios from 'axios';
 import * as actionCreators from './../../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -20,6 +19,12 @@ function SeccionEdicion(props) {
         noticia: noticia
     })
 
+    // console.log('editar: ', props.editar)
+    // console.log('noticia: ', props.noticiaEditable)
+    useEffect(() => {
+        props.editar && setData(props.noticiaEditable)
+    }, [props.noticiaEditable])
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setData(prevData => {
@@ -35,6 +40,21 @@ function SeccionEdicion(props) {
         }
     }
 
+    const handleEdit = (e) => {
+        e.preventDefault()
+        setData(prevData => {
+            const newValue = { ...prevData, noticia: noticia }
+            return newValue
+        })
+        const body = data
+        if (body.area === '' || body.autor === '' || body.descripcion === '' || body.imagen === '' || body.noticia === '' || body.titulo === '') {
+            toastFail()
+        } else {
+            props.setBodyNew(body)
+            props.editNew(body)
+        }
+    }
+
     const { enqueueSnackbar } = useSnackbar();
 
     const toastFail = () => {
@@ -47,9 +67,24 @@ function SeccionEdicion(props) {
             variant: 'error',
         })
     }
+    const toastEdited = () => {
+        enqueueSnackbar('Editado con éxito!', {
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+            TransitionComponent: Slide,
+            variant: 'success',
+        })
+    }
 
     const handleChangeNew = (editor) => {
         setNoticia(editor.getData())
+    }
+
+    const handleBack = (e) => {
+        e.preventDefault()
+        window.location.href = "/admin/editar"
     }
 
     const handleChange = (e) => {
@@ -58,6 +93,7 @@ function SeccionEdicion(props) {
             return newValue
         })
     }
+
     return (
         <div className="br-section-wrapper">
             <h6 className="br-section-label">Editor de Noticias</h6>
@@ -110,9 +146,19 @@ function SeccionEdicion(props) {
                 onChange={handleChangeNew}
             />
             <br />
-            <div class="form-layout-footer">
-                <button class="btn btn-info" onClick={handleSubmit}>Preview</button>
-            </div>
+            {
+                props.editar ?
+                    <>
+                        <div class="form-layout-footer">
+                            <button class="btn btn-info" onClick={handleEdit}>Editar</button>
+                            <button class="btn btn-info" onClick={handleBack}>Volver</button>
+                        </div>
+                    </>
+                    :
+                    <div class="form-layout-footer">
+                        <button class="btn btn-info" onClick={handleSubmit}>Preview</button>
+                    </div>
+            }
         </div>
     )
 }
@@ -120,7 +166,7 @@ function SeccionEdicion(props) {
 function mapStateToProps(state) {
     return {
         bodyNews: state.bodyNews,
-        resetNews: state.resetNews
+        areas: state.areas
     }
 }
 

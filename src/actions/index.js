@@ -1,4 +1,4 @@
-import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY } from "./constants";
+import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR } from "./constants";
 import axios from "axios";
 
 export function getNews() {
@@ -26,5 +26,41 @@ export function setBodyNew(props) {
     return {
         type: SET_BODY,
         payload: props
+    }
+}
+
+export function getBanner() {
+    return function (dispatch) {
+        axios.get('/news/getBannerNews')
+            .then(r => dispatch(bannerDispatch(r.data)))
+    }
+}
+
+function bannerDispatch(data) {
+    if (data.sobra) {
+        return {
+            type: AGREGAR,
+            payload: data
+        }
+    } else
+        return {
+            type: GET_BANNER,
+            payload: data.res
+        }
+}
+
+export function deleteNew(id) {
+    const body = { id }
+    return function () {
+        axios.post('/news/deleteNew', body)
+            .then(r => console.log(r))
+    }
+}
+
+export function editNew(info) {
+    const body = { info }
+    return function () {
+        axios.put('/news/updateNew', body)
+            .then(r => console.log(r.data))
     }
 }

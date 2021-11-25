@@ -23,7 +23,7 @@ function SeccionPreview(props) {
                 const redir = () => window.location.href = '/admin/crear';
                 setTimeout(redir, 3000)
             })
-            .catch (() => {
+            .catch(() => {
                 toastFail()
             })
     }
@@ -72,7 +72,8 @@ function SeccionPreview(props) {
 function mapStateToProps(state) {
     return {
         pagina: state.pagina,
-        bodyNews: state.bodyNews
+        bodyNews: state.bodyNews,
+        areas: state.areas
     }
 }
 

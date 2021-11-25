@@ -6,14 +6,12 @@ import News from "./components/News";
 import SideBar from "./components/SideBar";
 import { Route } from 'react-router-dom'
 import Editar from "./components/Admin/Editar";
-import Banner from "./components/Admin/Banner";
 
 function App() {
   return (
     <>
       <Route path="/admin/crear" component={Crear} exact />
       <Route path="/admin/editar" component={Editar} exact />
-      <Route path="/admin/banner" component={Banner} exact />
       <Route path="/home">
         <Nav />
         <div className="main-container">

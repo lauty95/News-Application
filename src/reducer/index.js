@@ -1,4 +1,4 @@
-import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY } from "../actions/constants";
+import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR } from "../actions/constants";
 const initialState = {
     news: [],
     areas: [],
@@ -7,6 +7,9 @@ const initialState = {
         titulo: '', area: '', descripcion: '', imagen: '', autor: '',
         noticia: '<h2>Escriba aquí la noticia</h2><h4>Subtitulo</h4><blockquote><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magni temporibus distinctio commodi delectus dolore cum deserunt corrupti necessitatibus sint eum velit in laudantium blanditiis, reprehenderit quisquam atque omnis quam.</p></blockquote><p>Ejemplo de <i>numeración</i></p><ol><li>Primer <a href="#">enlace</a></li><li>Segunda noticia <strong>importante</strong></li><li>Simple texto</li></ol>'
     },
+    banner: [],
+    sobras: [],
+
 };
 
 function reducer(state = initialState, { type, payload }) {
@@ -31,6 +34,17 @@ function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 bodyNews: payload
+            }
+        case GET_BANNER:
+            return {
+                ...state,
+                banner: payload
+            }
+        case AGREGAR:
+            return {
+                ...state,
+                banner: payload.res,
+                sobras: payload.sobra
             }
         default:
             return state

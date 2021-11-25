@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import ReactHtmlParser from 'react-html-parser'
-import axios from 'axios';
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import SeccionEdicion from './SeccionEdicion';
 import * as actionCreators from './../../actions'
@@ -11,11 +7,8 @@ import { bindActionCreators } from 'redux';
 import SeccionPreview from './SeccionPreview';
 
 function Crear(props) {
-    const [areas, setAreas] = useState([])
-
     useEffect(() => {
-        axios.get('/news/areas')
-            .then(r => setAreas(r.data))
+        props.getAreas()
     }, [])
 
     return (
@@ -32,10 +25,8 @@ function Crear(props) {
                         </a>
 
                         <ul className="br-menu-sub">
-
                             <li className="sub-item"><Link to="/admin/crear" className="sub-link">Crear Nueva Noticia</Link></li>
                             <li className="sub-item"><Link to="/admin/editar" className="sub-link">Modificar Noticias</Link></li>
-                            <li className="sub-item"><Link to="/admin/banner" className="sub-link">Modificar Banner</Link></li>
                         </ul>
                     </li>
                 </ul>
@@ -61,10 +52,10 @@ function Crear(props) {
                 </div>
                 <div className="br-pagebody">
                     <div className={props.pagina && "esconderSeccion"}>
-                        <SeccionEdicion areas={areas} />
+                        <SeccionEdicion />
                     </div>
                     <div className={!props.pagina && "esconderSeccion"}>
-                        <SeccionPreview areas={areas} />
+                        <SeccionPreview />
                     </div>
                 </div>
                 <footer className="br-footer">

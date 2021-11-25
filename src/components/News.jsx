@@ -7,11 +7,14 @@ function News(props) {
     useEffect(() => {
         props.getNews()
     }, [])
+    console.log(props.news)
     return (
         props.news.length > 0 ?
             <div className="col-lg-8 col-md-6 content-area">
                 <div className="row">
                     {props.news.map(n => miniNew(n.area, n.descripcion, n.imagen, n.noticia, n.titulo, n.createdAt, n.autor))}
+                    {props.sobras.length > 0 &&
+                        props.sobras.map(n => miniNew(n.area, n.descripcion, n.imagen, n.noticia, n.titulo, n.createdAt, n.autor))}
                 </div>
             </div>
             :
@@ -25,7 +28,8 @@ function News(props) {
 
 function mapStateToProps(state) {
     return {
-        news: state.news
+        news: state.news,
+        sobras: state.sobras,
     }
 }
 
