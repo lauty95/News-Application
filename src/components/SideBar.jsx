@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-
+import { Link } from 'react-router-dom';
 
 function SideBar(props) {
 
@@ -10,24 +10,26 @@ function SideBar(props) {
         props.getAreas()
     }, [])
 
+    const handleFilter = (categoria) => {
+        props.filtrar(categoria)
+    }
+
     return (
         <div className="col-lg-4 col-md-6 widget-area">
-            {/* Widget : Latest Post */}
             <aside className="widget widget_latestposts">
-                <h3 className="widget-title">Popular Posts</h3>
+                <h3 className="widget-title">ÚLTIMOS POSTS</h3>
                 {
-                    props.news.slice(0, 5).map(n => miniNew(n.imagen, n.titulo, n.createdAt))
+                    props.popular.slice(0, 5).map(n => miniNew(n.imagen, n.titulo, n.createdAt, n.id))
                 }
             </aside>
-            {/* Widget : Categories */}
             <aside className="widget widget_categories text-center">
-                <h3 className="widget-title">Categories</h3>
+                <h3 className="widget-title">CATEGORÍAS</h3>
                 <ul>
-                    {props.areas.map(el => <li><a href="#" title={el}>{el}</a></li>)}
+                    <li><a title={'todos'} onClick={() => handleFilter('Todos')} >TODOS</a></li>
+                    {props.areas.map(el => <li><a title={el} onClick={() => handleFilter(el)}>{el}</a></li>)}
                 </ul>
-            </aside>{/* Widget : Categories /- */}
-            {/* Widget : Instagram */}
-            <aside className="widget widget_instagram">
+            </aside>
+            {/* <aside className="widget widget_instagram">
                 <h3 className="widget-title">Instagram</h3>
                 <ul>
                     <li><a href="#"><img src="http://placehold.it/111x111" alt="Instagram" /></a></li>
@@ -37,10 +39,9 @@ function SideBar(props) {
                     <li><a href="#"><img src="http://placehold.it/111x111" alt="Instagram" /></a></li>
                     <li><a href="#"><img src="http://placehold.it/111x111" alt="Instagram" /></a></li>
                 </ul>
-            </aside>{/* Widget : Instagram /- */}
-            {/* Widget : Follow Us */}
+            </aside> */}
             <aside className="widget widget_social">
-                <h3 className="widget-title">FOLLOW US</h3>
+                <h3 className="widget-title">SÍGUENOS</h3>
                 <ul>
                     <li><a href="#" title><i className="ion-social-facebook-outline" /></a></li>
                     <li><a href="#" title><i className="ion-social-twitter-outline" /></a></li>
@@ -49,9 +50,8 @@ function SideBar(props) {
                     <li><a href="#" title><i className="ion-social-pinterest-outline" /></a></li>
                     <li><a href="#" title><i className="ion-social-vimeo-outline" /></a></li>
                 </ul>
-            </aside>{/* Widget : Follow Us /- */}
-            {/* Widget : Newsletter */}
-            <aside className="widget widget_newsletter">
+            </aside>
+            {/* <aside className="widget widget_newsletter">
                 <h3 className="widget-title">Newsletter</h3>
                 <div className="newsletter-box">
                     <i className="ion-ios-email-outline" />
@@ -62,7 +62,7 @@ function SideBar(props) {
                         <input type="submit" defaultValue="Subscribe Now" />
                     </form>
                 </div>
-            </aside>{/* Widget : Newsletter /- */}
+            </aside> */}
         </div>
     )
 }
@@ -70,7 +70,8 @@ function SideBar(props) {
 function mapStateToProps(state) {
     return {
         news: state.news,
-        areas: state.areas
+        areas: state.areas,
+        popular: state.popular
     }
 }
 
@@ -80,12 +81,12 @@ const mapDispatchToProps = function (dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
 
-function miniNew(imagen, titulo, createdAt) {
+function miniNew(imagen, titulo, createdAt, id) {
     return (
         <div className="latest-content">
-            <a href="#" title="Recent Posts"><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></a>
-            <h5><a href="#">{titulo}</a></h5>
-            <span><a href="#">{createdAt.split('T')[0]}</a></span>
+            <Link to={`/home/noticia/${id}`}><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></Link>
+            <h5><Link to={`/home/noticia/${id}`}>{titulo}</Link></h5>
+            <span>{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
         </div>
     )
 }

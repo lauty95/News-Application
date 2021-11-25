@@ -4,3 +4,4 @@ export const PREVIEW = 'PREVIEW';
 export const SET_BODY = 'SET_BODY';
 export const GET_BANNER = 'GET_BANNER';
 export const AGREGAR = 'AGREGAR';
+export const FILTRAR = 'FILTRAR';

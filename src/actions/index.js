@@ -1,4 +1,4 @@
-import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR } from "./constants";
+import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR, FILTRAR } from "./constants";
 import axios from "axios";
 
 export function getNews() {
@@ -53,7 +53,6 @@ export function deleteNew(id) {
     const body = { id }
     return function () {
         axios.post('/news/deleteNew', body)
-            .then(r => console.log(r))
     }
 }
 
@@ -61,6 +60,12 @@ export function editNew(info) {
     const body = { info }
     return function () {
         axios.put('/news/updateNew', body)
-            .then(r => console.log(r.data))
+    }
+}
+
+export function filtrar(categoria) {
+    return {
+        type: FILTRAR,
+        payload: categoria
     }
 }

@@ -1,6 +1,7 @@
-import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR } from "../actions/constants";
+import { GET_NEWS, GET_AREAS, PREVIEW, SET_BODY, GET_BANNER, AGREGAR, FILTRAR } from "../actions/constants";
 const initialState = {
     news: [],
+    backUpNews: [],
     areas: [],
     pagina: false,
     bodyNews: {
@@ -9,7 +10,7 @@ const initialState = {
     },
     banner: [],
     sobras: [],
-
+    popular: [],
 };
 
 function reducer(state = initialState, { type, payload }) {
@@ -18,7 +19,9 @@ function reducer(state = initialState, { type, payload }) {
             let noticias = payload.sort((a, b) => a.createdAt - b.createdAt)
             return {
                 ...state,
-                news: noticias.reverse()
+                news: noticias.reverse(),
+                popular: noticias.reverse(),
+                backUpNews: noticias.reverse()
             }
         case GET_AREAS:
             return {
@@ -44,7 +47,20 @@ function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 banner: payload.res,
-                sobras: payload.sobra
+                // news: state.news.concat(payload.sobra)
+            }
+        case FILTRAR:
+            const filtrado = state.backUpNews.filter(el => el.area === payload)
+            if (payload === 'Todos') {
+                return {
+                    ...state,
+                    news: state.popular
+                }
+            } else {
+                return {
+                    ...state,
+                    news: filtrado
+                }
             }
         default:
             return state

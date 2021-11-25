@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Nav() {
     return (
@@ -18,9 +19,9 @@ function Nav() {
                                 </ul>
                             </div>
                             <div className="col-lg-4 logo-block">
-                                <a href="index.html" title="Logo">minimag</a>
+                                <Link to="/home">minimag</Link>
                             </div>
-                            <div className="col-lg-4 col-6">
+                            {/* <div className="col-lg-4 col-6">
                                 <ul className="top-right user-info">
                                     <li><a href="#search-box" data-toggle="collapse" className="search collapsed" title="Search"><i className="pe-7s-search sr-ic-open" /><i className="pe-7s-close sr-ic-close" /></a></li>
                                     <li className="dropdown">
@@ -32,7 +33,7 @@ function Nav() {
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                     </div>{/* Container /- */}
                 </div>{/* Top Header /- */}
@@ -40,7 +41,7 @@ function Nav() {
             {/* Container */}
             <div className="container">
                 {/* Menu Block */}
-                <div className="container-fluid no-left-padding no-right-padding menu-block">
+                {/* <div className="container-fluid no-left-padding no-right-padding menu-block">
                     <nav className="navbar ownavigation navbar-expand-lg">
                         <a className="navbar-brand" href="index.html">minimag</a>
                         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar7" aria-controls="navbar7" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,7 +122,7 @@ function Nav() {
                             </div>
                         </div>
                     </nav>
-                </div>{/* Menu Block /- */}
+                </div> */}
             </div>{/* Container /- */}
             {/* Search Box */}
             <div className="search-box collapse" id="search-box">

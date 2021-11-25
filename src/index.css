@@ -67,3 +67,7 @@ code {
 .seccionEdicion {
   display: none !important;
 }
+
+.containerFtrSocial{
+  padding-top: 1px;
+}

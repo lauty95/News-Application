@@ -46,7 +46,7 @@ function Editar(props) {
                         <div>
                             <h2>{titulo}</h2>
                             <p>{descripcion}</p>
-                            {createdAt.split('T')[0]}
+                            {createdAt.split('T')[0].split("-").reverse().join("/")}
                         </div>
                     </div>
                     <div class="opciones">

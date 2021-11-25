@@ -4,12 +4,9 @@ import React, { useEffect, useState } from 'react'
 import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 function Carousel(props) {
-
-    useEffect(() => {
-        props.getBanner()
-    }, [])
 
     function sacarUno(info) {
         let cont = 0
@@ -52,6 +49,7 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel)
 
 function Banner(info, status) {
+    console.log(info)
     return (
         <div className={`carousel-item ${status}`}>
             <div className="row">
@@ -59,9 +57,9 @@ function Banner(info, status) {
                     <div className="post-box">
                         <img src={info[0].imagen} alt="Slide" />
                         <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[0].categoria}>{info[0].categoria}</a></span>
-                            <h3><a href="#" title={info[0].titulo}>{info[0].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
+                            <span className="post-category">{info[0].categoria}</span>
+                            <h3><Link to={`/home/noticia/${info[0].id}`}>{info[0].titulo}</Link></h3>
+                            <Link to={`/home/noticia/${info[0].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                 </div>
@@ -69,17 +67,17 @@ function Banner(info, status) {
                     <div className="post-box">
                         <img src={info[1].imagen} alt="Slide" />
                         <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[1].categoria}>{info[1].categoria}</a></span>
-                            <h3><a href="#" title={info[1].titulo}>{info[1].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
+                            <span className="post-category">{info[1].categoria}</span>
+                            <h3><Link to={`/home/noticia/${info[1].id}`}>{info[1].titulo}</Link></h3>
+                            <Link to={`/home/noticia/${info[1].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                     <div className="post-box">
                         <img src={info[2].imagen} alt="Slide" />
                         <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[2].categoria}>{info[2].categoria}</a></span>
-                            <h3><a href="#" title={info[2].titulo}>{info[2].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
+                            <span className="post-category">{info[2].categoria}</span>
+                            <h3><Link to={`/home/noticia/${info[2].id}`}>{info[2].titulo}</Link></h3>
+                            <Link to={`/home/noticia/${info[2].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                 </div>

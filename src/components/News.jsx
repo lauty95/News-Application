@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react'
 import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 function News(props) {
     useEffect(() => {
+        props.getBanner()
         props.getNews()
     }, [])
-    console.log(props.news)
+
     return (
         props.news.length > 0 ?
             <div className="col-lg-8 col-md-6 content-area">
                 <div className="row">
-                    {props.news.map(n => miniNew(n.area, n.descripcion, n.imagen, n.noticia, n.titulo, n.createdAt, n.autor))}
-                    {props.sobras.length > 0 &&
-                        props.sobras.map(n => miniNew(n.area, n.descripcion, n.imagen, n.noticia, n.titulo, n.createdAt, n.autor))}
+                    {props.news.map(n => miniNew(n.area, n.descripcion, n.imagen, n.noticia, n.titulo, n.createdAt, n.autor, n.id))}
                 </div>
             </div>
             :
             <div className="col-lg-8 col-md-6 content-area">
                 <div className="row">
-                    <h1>Loading...</h1>
+                    <h1>Sin noticias por aquí...</h1>
                 </div>
             </div>
     )
@@ -40,24 +40,24 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(News)
 
 
-function miniNew(area, descripcion, imagen, noticia, titulo, createdAt, autor) {
+function miniNew(area, descripcion, imagen, noticia, titulo, createdAt, autor, id) {
     return (
         <div className="col-12 col-md-12 col-sm-6 blog-paralle">
             <div className="type-post">
                 <div className="entry-cover">
                     <div className="post-meta">
-                        <span className="byline">by <a href="#" title="Indesign">{autor}</a></span>
-                        <span className="post-date"><a href="#">{createdAt.split('T')[0]}</a></span>
+                        <span className="byline">by {autor}</span>
+                        <span className="post-date">{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
                     </div>
-                    <a href="#"><img src={imagen} alt="Post" /></a>
+                    <Link to={`/home/noticia/${id}`}><img src={imagen} alt="Post" /></Link>
                 </div>
                 <div className="entry-content">
                     <div className="entry-header">
-                        <span className="post-category"><a href="#" title="Technology">{area}</a></span>
-                        <h3 className="entry-title"><a href="#" title="Traffic Jams Solved">{titulo}</a></h3>
+                        <span className="post-category"><Link to={`/home/noticia/${id}`}>{area}</Link></span>
+                        <h3 className="entry-title"><Link to={`/home/noticia/${id}`}>{titulo}</Link></h3>
                     </div>
                     <p>{descripcion}</p>
-                    <a href="#" title="Read More">Read More</a>
+                    <Link to={`/home/noticia/${id}`}>Leer Mas</Link>
                 </div>
             </div>
         </div>

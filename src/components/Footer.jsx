@@ -4,7 +4,7 @@ function Footer() {
     return (
         <footer className="container-fluid no-left-padding no-right-padding footer-main">
             {/* Instagram */}
-            <div className="container-fluid no-left-padding no-right-padding instagram-block">
+            {/* <div className="container-fluid no-left-padding no-right-padding instagram-block">
                 <ul className="instagram-carousel">
                     <li><a href="#"><img src="http://placehold.it/319x319/aaa" alt="Instagram" /></a></li>
                     <li><a href="#"><img src="http://placehold.it/319x319" alt="Instagram" /></a></li>
@@ -13,9 +13,9 @@ function Footer() {
                     <li><a href="#"><img src="http://placehold.it/319x319/aaa" alt="Instagram" /></a></li>
                     <li><a href="#"><img src="http://placehold.it/319x319" alt="Instagram" /></a></li>
                 </ul>
-            </div>{/* Instagram /- */}
+            </div> */}
             {/* Container */}
-            <div className="container">
+            <div className="containerFtrSocial">
                 <ul className="ftr-social">
                     <li><a href="#" title="Facebook"><i className="fa fa-facebook" />Facebook</a></li>
                     <li><a href="#" title="Twitter"><i className="fa fa-twitter" />twitter</a></li>
