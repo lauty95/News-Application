@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import * as actionCreators from './../../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -66,20 +65,18 @@ function Editar(props) {
         <>
             <div>
                 {/* ########## START: LEFT PANEL ########## */}
-                <div className="br-logo"><a href><span>[</span>Rodri <i>news</i><span>]</span></a></div>
+                <div className="br-logo"><a href="/admin/crear"><span>[</span>Rodri <i>news</i><span>]</span></a></div>
                 <div className="br-sideleft sideleft-scrollbar">
                     <label className="sidebar-label pd-x-10 mg-t-20 op-3">Navegación</label>
                     <ul className="br-sideleft-menu">
                         <li className="br-menu-item">
-                            <a href="#" className="br-menu-link with-sub">
+                            <div className="br-menu-link with-sub">
                                 <i className="menu-item-icon icon ion-ios-paper-outline tx-20" />
                                 <span className="menu-item-label">Crear &amp; Editar</span>
-                            </a>
-
+                            </div>
                             <ul className="br-menu-sub">
-
-                                <li className="sub-item"><Link to="/admin/crear" className="sub-link">Crear Nueva Noticia</Link></li>
-                                <li className="sub-item"><Link to="/admin/editar" className="sub-link">Modificar Noticias</Link></li>
+                                <li className="sub-item"><a href="/admin/crear" className="sub-link">Crear Nueva Noticia</a></li>
+                                <li className="sub-item"><div className="sub-link">Modificar Noticias</div></li>
                             </ul>
                         </li>
                     </ul>

@@ -51,7 +51,7 @@ function SeccionPreview(props) {
             variant: 'error',
         })
     }
-
+    
     return (
         <div className="br-section-wrapper">
             <h1>{props.bodyNews.titulo}</h1>

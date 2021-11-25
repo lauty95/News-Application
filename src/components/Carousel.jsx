@@ -85,39 +85,3 @@ function Banner(info, status) {
         </div>
     )
 }
-function BannerSecundario(info) {
-    return (
-        <div className={`carousel-item`}>
-            <div className="row">
-                <div className="col-lg-8 col-sm-12 post-block post-big">
-                    <div className="post-box">
-                        <img src={info[0].imagen} alt="Slide" />
-                        <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[0].categoria}>{info[0].categoria}</a></span>
-                            <h3><a href="#" title={info[0].titulo}>{info[0].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-sm-12 post-block post-thumb">
-                    <div className="post-box">
-                        <img src={info[1].imagen} alt="Slide" />
-                        <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[1].categoria}>{info[1].categoria}</a></span>
-                            <h3><a href="#" title={info[1].titulo}>{info[1].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
-                        </div>
-                    </div>
-                    <div className="post-box">
-                        <img src={info[2].imagen} alt="Slide" />
-                        <div className="entry-content">
-                            <span className="post-category"><a href="#" title={info[2].categoria}>{info[2].categoria}</a></span>
-                            <h3><a href="#" title={info[2].titulo}>{info[2].titulo}</a></h3>
-                            <a href="#" title="Leer más">Leer más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}

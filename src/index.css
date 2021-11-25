@@ -68,6 +68,12 @@ code {
   display: none !important;
 }
 
-.containerFtrSocial{
+.containerFtrSocial {
   padding-top: 1px;
+}
+
+.spaceBetweenButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
 }

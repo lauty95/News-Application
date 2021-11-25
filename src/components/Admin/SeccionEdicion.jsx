@@ -8,7 +8,7 @@ import { useSnackbar } from 'notistack';
 import Slide from '@material-ui/core/Slide';
 
 function SeccionEdicion(props) {
-    const [noticia, setNoticia] = useState('<h2>Escriba aquí la noticia</h2><h4>Subtitulo</h4><blockquote><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magni temporibus distinctio commodi delectus dolore cum deserunt corrupti necessitatibus sint eum velit in laudantium blanditiis, reprehenderit quisquam atque omnis quam.</p></blockquote><p>Ejemplo de <i>numeración</i></p><ol><li>Primer <a href="#">enlace</a></li><li>Segunda noticia <strong>importante</strong></li><li>Simple texto</li></ol>')
+
     const [data, setData] = useState({
         titulo: '',
         area: '',
@@ -16,42 +16,35 @@ function SeccionEdicion(props) {
         imagen: '',
         autor: '',
         destacar: false,
-        noticia: noticia
+        noticia: ''
     })
 
-    // console.log('editar: ', props.editar)
-    // console.log('noticia: ', props.noticiaEditable)
     useEffect(() => {
+        props.getAreas()
         props.editar && setData(props.noticiaEditable)
     }, [props.noticiaEditable])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setData(prevData => {
-            const newValue = { ...prevData, noticia: noticia }
-            return newValue
-        })
         const body = data
-        if (body.area === '' || body.autor === '' || body.descripcion === '' || body.imagen === '' || body.noticia === '' || body.titulo === '') {
+        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen === '' || data.noticia === '' || data.titulo === '') {
             toastFail()
         } else {
-            props.setBodyNew(body)
+            props.setBodyNew(data)
             props.preview(!props.pagina)
         }
     }
 
     const handleEdit = (e) => {
         e.preventDefault()
-        setData(prevData => {
-            const newValue = { ...prevData, noticia: noticia }
-            return newValue
-        })
-        const body = data
-        if (body.area === '' || body.autor === '' || body.descripcion === '' || body.imagen === '' || body.noticia === '' || body.titulo === '') {
+        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen === '' || data.noticia === '' || data.titulo === '') {
             toastFail()
         } else {
-            props.setBodyNew(body)
-            props.editNew(body)
+            props.setBodyNew(data)
+            props.editNew(data)
+            toastEdited()
+            const redir = () => window.location.href = '/admin/editar';
+            setTimeout(redir, 3000)
         }
     }
 
@@ -68,7 +61,7 @@ function SeccionEdicion(props) {
         })
     }
     const toastEdited = () => {
-        enqueueSnackbar('Editado con éxito!', {
+        enqueueSnackbar('Editado con éxito! Serás redireccionado automáticamente', {
             anchorOrigin: {
                 vertical: 'bottom',
                 horizontal: 'right',
@@ -76,10 +69,6 @@ function SeccionEdicion(props) {
             TransitionComponent: Slide,
             variant: 'success',
         })
-    }
-
-    const handleChangeNew = (editor) => {
-        setNoticia(editor.getData())
     }
 
     const handleBack = (e) => {
@@ -140,16 +129,31 @@ function SeccionEdicion(props) {
                     </div>
                 </div>
             </div>
-            <CKEditor
-                data={noticia}
-                editor={ClassicEditor}
-                onChange={handleChangeNew}
-            />
+            {props.editar ?
+                <CKEditor
+                    data={props.noticiaEditable.noticia}
+                    editor={ClassicEditor}
+                    onChange={(event, editor) => setData(prevData => {
+                        const newValue = { ...prevData, noticia: editor.getData() }
+                        return newValue
+                    })}
+
+                />
+                :
+                <CKEditor
+                    data='<h2>Escriba aquí la noticia</h2><h4>Subtitulo</h4><blockquote><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam magni temporibus distinctio commodi delectus dolore cum deserunt corrupti necessitatibus sint eum velit in laudantium blanditiis, reprehenderit quisquam atque omnis quam.</p></blockquote><p>Ejemplo de <i>numeración</i></p><ol><li>Primer <a href="#">enlace</a></li><li>Segunda noticia <strong>importante</strong></li><li>Simple texto</li></ol>'
+                    editor={ClassicEditor}
+                    onChange={(event, editor) => setData(prevData => {
+                        const newValue = { ...prevData, noticia: editor.getData() }
+                        return newValue
+                    })}
+
+                />}
             <br />
             {
                 props.editar ?
                     <>
-                        <div class="form-layout-footer">
+                        <div class="form-layout-footer spaceBetweenButtons">
                             <button class="btn btn-info" onClick={handleEdit}>Editar</button>
                             <button class="btn btn-info" onClick={handleBack}>Volver</button>
                         </div>

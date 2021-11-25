@@ -25,8 +25,8 @@ function Crear(props) {
                         </a>
 
                         <ul className="br-menu-sub">
-                            <li className="sub-item"><Link to="/admin/crear" className="sub-link">Crear Nueva Noticia</Link></li>
-                            <li className="sub-item"><Link to="/admin/editar" className="sub-link">Modificar Noticias</Link></li>
+                            <li className="sub-item"><div className="sub-link">Crear Nueva Noticia</div></li>
+                            <li className="sub-item"><a href="/admin/editar" className="sub-link">Modificar Noticias</a></li>
                         </ul>
                     </li>
                 </ul>
