@@ -17,7 +17,7 @@ function SeccionPreview(props) {
 
     const publicar = (e) => {
         e.preventDefault()
-        axios.post('/news/newPost', props.bodyNews)
+        axios.post('/newPost', props.bodyNews)
             .then(() => {
                 toastComplete()
                 const redir = () => window.location.href = '/admin/crear';

@@ -15,7 +15,7 @@ function Editar(props) {
     const [noticiaFiltrada, setNoticiaFiltrada] = useState([])
 
     useEffect(() => {
-        axios.get('/news/getAll')
+        axios.get('/getAll')
             .then(r => setNoticias(r.data))
     }, [refresh])
 

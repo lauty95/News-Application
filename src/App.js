@@ -7,10 +7,14 @@ import SideBar from "./components/SideBar";
 import { Route } from 'react-router-dom'
 import Editar from "./components/Admin/Editar";
 import DetailNew from "./components/DetailNew";
+import { Redirect } from "react-router-dom"
 
 function App() {
   return (
     <>
+      <Route path="/">
+        <Redirect to="/home" />
+      </Route>
       <Route path="/admin/crear" component={Crear} exact />
       <Route path="/admin/editar" component={Editar} exact />
       <Route path="/home" exact>

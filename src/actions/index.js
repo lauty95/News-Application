@@ -3,14 +3,14 @@ import axios from "axios";
 
 export function getNews() {
     return function (dispatch) {
-        axios.get('/news')
+        axios.get('/')
             .then(r => dispatch({ type: GET_NEWS, payload: r.data }))
     }
 }
 
 export function getAreas() {
     return function (dispatch) {
-        axios.get('/news/areas')
+        axios.get('/areas')
             .then(r => dispatch({ type: GET_AREAS, payload: r.data }))
     }
 }
@@ -31,7 +31,7 @@ export function setBodyNew(props) {
 
 export function getBanner() {
     return function (dispatch) {
-        axios.get('/news/getBannerNews')
+        axios.get('/getBannerNews')
             .then(r => dispatch(bannerDispatch(r.data)))
     }
 }
@@ -52,14 +52,14 @@ function bannerDispatch(data) {
 export function deleteNew(id) {
     const body = { id }
     return function () {
-        axios.post('/news/deleteNew', body)
+        axios.post('/deleteNew', body)
     }
 }
 
 export function editNew(info) {
     const body = { info }
     return function () {
-        axios.put('/news/updateNew', body)
+        axios.put('/updateNew', body)
     }
 }
 

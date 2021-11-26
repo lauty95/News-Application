@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser'
 
 function DetailNew(props) {
     const id = props.match.params.id
-    const url = `/news/getById/${id}`
+    const url = `/getById/${id}`
 
     const [noticia, setNoticia] = useState({})
 
