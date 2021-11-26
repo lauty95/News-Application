@@ -137,7 +137,11 @@ function SeccionEdicion(props) {
                         const newValue = { ...prevData, noticia: editor.getData() }
                         return newValue
                     })}
-
+                    config={{
+                        mediaEmbed: {
+                            previewsInData: true
+                        }
+                    }}
                 />
                 :
                 <CKEditor
@@ -147,7 +151,11 @@ function SeccionEdicion(props) {
                         const newValue = { ...prevData, noticia: editor.getData() }
                         return newValue
                     })}
-
+                    config={{
+                        mediaEmbed: {
+                            previewsInData: true
+                        }
+                    }}
                 />}
             <br />
             {

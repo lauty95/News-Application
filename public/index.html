@@ -13,6 +13,8 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>News App</title>
 
+    <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
+
     <link rel="icon" type="image/x-icon" href="assets/images//favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="assets/images//apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/images//apple-touch-icon-72x72-precomposed.png">
@@ -71,6 +73,35 @@
           tooltip: false
         })
       });
+    </script>
+    <script>
+      document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+          // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+          // to discover the media.
+          const anchor = document.createElement( 'a' );
+  
+          anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+          anchor.className = 'embedly-card';
+  
+          element.appendChild( anchor );
+      } );
+    </script>
+    <script>
+      document.querySelectorAll( 'div[data-oembed-url]' ).forEach( element => {
+          // Discard the static media preview from the database (empty the <div data-oembed-url="...">).
+          while ( element.firstChild ) {
+              element.removeChild( element.firstChild );
+          }
+
+          // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+          // to discover the media.
+          const anchor = document.createElement( 'a' );
+
+          anchor.setAttribute( 'href', element.dataset.oembedUrl );
+          anchor.className = 'embedly-card';
+
+          element.appendChild( anchor );
+      } );
     </script>
   </body>
 </html>
