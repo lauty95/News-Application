@@ -4,7 +4,7 @@ import axios from "axios";
 export function getNews() {
     return function (dispatch) {
         axios.get('/')
-            .then(r => dispatch({ type: GET_NEWS, payload: r.data }))
+            .then(r => dispatch({ type: GET_NEWS, payload: Array.isArray(r.data) ? r.data : [] }))
     }
 }
 

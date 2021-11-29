@@ -86,7 +86,6 @@ function SeccionEdicion(props) {
             return newValue
         })
     }
-    console.log(data)
     const handleChange = (e) => {
         setData(prevData => {
             const newValue = { ...prevData, [e.target.name]: e.target.value }

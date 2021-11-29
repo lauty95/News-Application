@@ -10,7 +10,9 @@ import { Provider } from 'react-redux'
 import { SnackbarProvider } from 'notistack';
 
 dotenv.config()
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
+const back = 'https://rodri-news.herokuapp.com'
+const local = "http://localhost:3001"
+axios.defaults.baseURL = back
 
 ReactDOM.render(
   <React.StrictMode>

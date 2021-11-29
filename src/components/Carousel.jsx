@@ -10,7 +10,7 @@ function Carousel(props) {
 
     function sacarUno(info) {
         let cont = 0
-        if (info.length > 0)
+        if (info && info.length > 0)
             return props.banner.map(el => {
                 cont++
                 if (cont === 1) return Banner(el, "active")
@@ -23,7 +23,7 @@ function Carousel(props) {
                 <div id="slider-carousel-2" className="carousel slide" data-ride="carousel">
                     <div className="carousel-inner" role="listbox">
                         {
-                            props.banner.length > 0 &&
+                            props.banner && props.banner.length > 0 &&
                                 props.banner.length === 1 ?
                                 Banner(props.banner[0], "active")
                                 :

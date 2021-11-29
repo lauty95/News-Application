@@ -17,7 +17,7 @@ function App() {
       </Route> */}
       <Route path="/admin/crear" component={Crear} exact />
       <Route path="/admin/editar" component={Editar} exact />
-      <Route path="/home" exact>
+      <Route path="/" exact>
         <Nav />
         <div className="main-container">
           <main className="site-main">
@@ -34,7 +34,7 @@ function App() {
         </div>
         <Footer />
       </Route>
-      <Route path="/home/noticia/:id" exact>
+      <Route path="/noticia/:id" exact>
         <Nav />
         <div className="main-container">
           <main className="site-main">
