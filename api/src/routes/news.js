@@ -8,12 +8,12 @@ const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 const {
-    HOST, PORT, USER, PASSWORD,
+    HOST, USER, PASSWORD,
 } = process.env;
 
 const config = {
     host: HOST,
-    port: PORT,
+    port: '21',
     user: USER,
     password: PASSWORD,
     secure: false
