@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { useSnackbar } from 'notistack';
 import Slide from '@material-ui/core/Slide';
+import axios from 'axios';
 
 function SeccionEdicion(props) {
 
@@ -13,7 +14,8 @@ function SeccionEdicion(props) {
         titulo: '',
         area: '',
         descripcion: '',
-        imagen: '',
+        imagen: [],
+        video: '',
         autor: '',
         destacar: false,
         noticia: ''
@@ -27,7 +29,7 @@ function SeccionEdicion(props) {
     const handleSubmit = (e) => {
         e.preventDefault()
         const body = data
-        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen === '' || data.noticia === '' || data.titulo === '') {
+        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen.length === 0 || data.noticia === '' || data.titulo === '') {
             toastFail()
         } else {
             props.setBodyNew(data)
@@ -37,7 +39,7 @@ function SeccionEdicion(props) {
 
     const handleEdit = (e) => {
         e.preventDefault()
-        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen === '' || data.noticia === '' || data.titulo === '') {
+        if (data.area === '' || data.autor === '' || data.descripcion === '' || data.imagen.length === 0 || data.noticia === '' || data.titulo === '') {
             toastFail()
         } else {
             props.setBodyNew(data)
@@ -76,11 +78,35 @@ function SeccionEdicion(props) {
         window.location.href = "/admin/editar"
     }
 
+    const quitarImagen = (e) => {
+        e.preventDefault()
+        setData(prevData => {
+            const newArray = data.imagen.filter(el => el !== e.target.name)
+            const newValue = { ...prevData, imagen: newArray }
+            return newValue
+        })
+    }
+    console.log(data)
     const handleChange = (e) => {
         setData(prevData => {
             const newValue = { ...prevData, [e.target.name]: e.target.value }
             return newValue
         })
+    }
+    const handleChangeImage = event => {
+        const files = event.target.files
+        const fd = new FormData()
+        for (let i = 0; i < files.length; i++) {
+            fd.append('imagen', event.target.files[i])
+        }
+        axios.post('/uploadImages', fd)
+            .then(r => setData(prevData => {
+                let nuevoArray = []
+                if (data.imagen.length > 0) data.imagen.forEach(el => nuevoArray.push(el))
+                r.data.dir.forEach(el => nuevoArray.push(el))
+                const newValue = { ...prevData, imagen: nuevoArray }
+                return newValue
+            }))
     }
 
     return (
@@ -125,7 +151,25 @@ function SeccionEdicion(props) {
                 <div className="col-lg-8">
                     <div className="form-group mg-b-10-force">
                         {/* <label className="form-control-label">Ingrese el título de la noticia<span className="tx-danger">*</span></label> */}
-                        <input value={data.imagen} required className="form-control" type="text" name="imagen" placeholder="Ingrese la URL de la imagen" onChange={handleChange} />
+                        <input value={data.video} required className="form-control" type="text" name="video" placeholder="Ingrese una URL de youtube" onChange={handleChange} />
+                    </div>
+                </div>
+                <div className="col-lg-8">
+                    <input class="inputImagen" type="file" multiple id="add-image" id="imagen" name="imagen" onChange={handleChangeImage} />
+                    <label class="btn btn-info" htmlFor="imagen">Agregar Fotos</label>
+                </div>
+                <div className="col-lg-12">
+                    <div className="prevImagenes">
+                        {
+                            data.imagen.length > 0 &&
+                            data.imagen.map(foto =>
+                                <>
+                                    <div className="botonEliminar">
+                                        <img src={foto} alt="foto de la noticia" />
+                                        <button name={foto} onClick={(e) => quitarImagen(e)}>X</button>
+                                    </div>
+                                </>)
+                        }
                     </div>
                 </div>
             </div>

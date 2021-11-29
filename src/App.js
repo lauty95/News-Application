@@ -12,9 +12,9 @@ import { Redirect } from "react-router-dom"
 function App() {
   return (
     <>
-      <Route path="/">
+      {/* <Route path="/">
         <Redirect to="/home" />
-      </Route>
+      </Route> */}
       <Route path="/admin/crear" component={Crear} exact />
       <Route path="/admin/editar" component={Editar} exact />
       <Route path="/home" exact>

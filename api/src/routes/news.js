@@ -1,7 +1,20 @@
 const { News } = require('../db');
 const express = require('express');
-const { Op } = require('sequelize');
 const router = express();
+const multer = require('multer')
+const FTPStorage = require('multer-ftp')
+const FTP = require('ftp');
+const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
+
+const config = {
+    host: 'c2410346.ferozo.com',
+    port: '21',
+    user: 'c2410346',
+    password: 'LU65nubire',
+    secure: false
+}
+
 
 const areas = ['Mantenimiento', 'Recursos Humanos', 'Tecnología', 'Gerencia', 'Nueva área']
 
@@ -20,7 +33,6 @@ router.get("/", async (req, res) => {
 
 router.get("/getById/:id", async (req, res) => {
     const { id } = req.params
-    console.log(req.params)
     try {
         await News.findOne({
             where: {
@@ -47,7 +59,7 @@ router.get('/areas', async (req, res) => {
 })
 
 router.post("/newPost", async (req, res) => {
-    const { noticia, titulo, area, descripcion, imagen, autor, destacar } = req.body;
+    const { noticia, titulo, area, descripcion, video, imagen, autor, destacar } = req.body;
     try {
         try {
             const newNoticia = await News.create({
@@ -57,6 +69,7 @@ router.post("/newPost", async (req, res) => {
                 area,
                 descripcion,
                 imagen,
+                video,
                 autor,
                 destacar
             })
@@ -109,8 +122,7 @@ router.post("/deleteNew", async (req, res) => {
 })
 
 router.put('/updateNew', async (req, res) => {
-    const { id, noticia, titulo, area, descripcion, imagen, autor, destacar } = req.body.info
-    console.log(req.body.info)
+    const { id, noticia, titulo, area, descripcion, imagen, video, autor, destacar } = req.body.info
     try {
         await News.update({
             noticia,
@@ -119,7 +131,8 @@ router.put('/updateNew', async (req, res) => {
             descripcion,
             imagen,
             autor,
-            destacar
+            destacar,
+            video
         },
             {
                 where: {
@@ -130,6 +143,29 @@ router.put('/updateNew', async (req, res) => {
     } catch (e) {
         res.send(e)
     }
+})
+
+const upload = multer({
+    storage: new FTPStorage({
+        basepath: `image_uploads/`,
+        // connection: new FTP().connect(config),
+        ftp: config,
+        destination: function (req, file, options, cb) {
+            const { originalname } = file;
+            const ext = originalname.split(".").pop()
+            const path = `public_html/image_uploads/${uuidv4()}.${ext}`;
+            fs.mkdirSync(path, { recursive: true });
+            cb(null, path)
+            
+        }
+    })
+}).array('imagen')
+
+router.post('/uploadImages', upload, async (req, res) => {
+    const files = req.files
+    var dir = []
+    files.forEach(el => dir.push(`http://c2410346.ferozo.com/image_uploads/${el.path.split("/").pop()}`))
+    res.status(200).json({ dir }).end()
 })
 
 module.exports = router;

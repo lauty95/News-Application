@@ -77,3 +77,57 @@ code {
   justify-content: space-between;
   width: 200px;
 }
+
+.inputImagen {
+  display: none;
+}
+
+.prevImagenes {
+  margin: 0;
+  display: flex;
+}
+
+.botonEliminar {
+  width: 200px;
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.botonEliminar img {
+  width: 200px;
+  margin-right: 10px;
+  margin: 0px;
+}
+
+.botonEliminar button {
+  position: absolute;
+  border: 0px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.contenedorFoto {
+  width: 200px;
+}
+
+.imagenBanner{
+  width: 100%;
+  height: 450px;
+}
+
+.imagenBannerDetail{
+  width: 100%;
+  height: 550px;
+}
+
+.imagenBannerCentro{
+  height: 454px;
+  width: 100%;
+}
+.imagenBannerDerecha{
+  height: 225px;
+  width: 100%;
+}

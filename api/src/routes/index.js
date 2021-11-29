@@ -3,6 +3,9 @@ const { News } = require('../db');
 const news = require("./news");
 const router = express();
 
-router.use("/", news);
+const error = fn => (req, res, next) =>
+    Promise.resolve(fn(req, res, next)).catch(next);
+
+router.use("/", error(news));
 
 module.exports = router;

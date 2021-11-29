@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { useSnackbar } from 'notistack';
 import Slide from '@material-ui/core/Slide';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 function SeccionPreview(props) {
     const fecha = new Date()
@@ -51,12 +53,25 @@ function SeccionPreview(props) {
             variant: 'error',
         })
     }
-    
+
     return (
         <div className="br-section-wrapper">
             <h1>{props.bodyNews.titulo}</h1>
             <p className="area">{props.bodyNews.area}</p>
-            <img className="imagenNoticia" src={props.bodyNews.imagen} />
+            {
+                props.bodyNews.imagen &&
+                <AliceCarousel>
+                    {props.bodyNews.imagen.map(el => <img src={el} className="imagenBanner" />)}
+                </AliceCarousel>
+            }
+            <iframe src='https://www.youtube.com/embed/E7wJTI-1dvQ'
+                width="100%"
+                height="400px"
+                frameBorder='0'
+                allow='autoplay; encrypted-media'
+                allowFullScreen
+                title='video'
+            />
             <p className="descripcionNoticia">{props.bodyNews.descripcion}</p>
             {ReactHtmlParser(props.bodyNews.noticia)}
             <p className="autor">Publicado por {props.bodyNews.autor}</p>
@@ -82,3 +97,4 @@ const mapDispatchToProps = function (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SeccionPreview)
+
