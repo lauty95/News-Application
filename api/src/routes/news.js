@@ -6,12 +6,16 @@ const FTPStorage = require('multer-ftp')
 const FTP = require('ftp');
 const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config();
+const {
+    HOST, PORT, USER, PASSWORD,
+} = process.env;
 
 const config = {
-    host: 'c2410346.ferozo.com',
-    port: '21',
-    user: 'c2410346',
-    password: 'LU65nubire',
+    host: HOST,
+    port: PORT,
+    user: USER,
+    password: PASSWORD,
     secure: false
 }
 
@@ -156,7 +160,7 @@ const upload = multer({
             const path = `public_html/image_uploads/${uuidv4()}.${ext}`;
             fs.mkdirSync(path, { recursive: true });
             cb(null, path)
-            
+
         }
     })
 }).array('imagen')
