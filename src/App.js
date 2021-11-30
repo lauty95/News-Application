@@ -21,7 +21,7 @@ function App() {
             <div className="container-fluid no-left-padding no-right-padding page-content blog-paralle-post">
               <div className="container">
                 <div className="row">
-                  <News />
+                  <News /> 
                   <SideBar />
                 </div>
               </div>
