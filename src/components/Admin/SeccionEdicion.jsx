@@ -92,11 +92,12 @@ function SeccionEdicion(props) {
             return newValue
         })
     }
+    console.log(data)
     const handleChangeImage = event => {
         const files = event.target.files
         const fd = new FormData()
         for (let i = 0; i < files.length; i++) {
-            fd.append('imagen', event.target.files[i])
+            fd.append("imagen", event.target.files[i])
         }
         axios.post('/uploadImages', fd)
             .then(r => setData(prevData => {

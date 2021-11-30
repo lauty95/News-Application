@@ -34,13 +34,13 @@ function Editar(props) {
         setNoticiaFiltrada(filtro[0])
     }
 
-    function tarjetaNoticia({ id, imagen, titulo, descripcion, createdAt, destacar }) {
+    function tarjetaNoticia({ id, poster, titulo, descripcion, createdAt, destacar }) {
         return (
             <>
                 <div className={destacar ? `tarjetaNoticia destacar` : "tarjetaNoticia"}>
                     <div className="descripcion">
                         <div>
-                            <img src={imagen} alt="imagen descriptiva de la noticia" />
+                            <img src={poster} alt="imagen descriptiva de la noticia" />
                         </div>
                         <div>
                             <h2>{titulo}</h2>

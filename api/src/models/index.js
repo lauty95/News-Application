@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
     imagen: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: false },
     autor: { type: DataTypes.STRING, allowNull: false },
     destacar: { type: DataTypes.BOOLEAN, defaultValue: false, allowNull: false },
-    video: {type: DataTypes.STRING, allowNull: true}
+    video: {type: DataTypes.STRING, allowNull: true},
+    poster: {type: DataTypes.STRING, allowNull: false}
   });
 };

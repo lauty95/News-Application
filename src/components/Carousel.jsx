@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 function Carousel(props) {
-
     function sacarUno(info) {
         let cont = 0
         if (info && info.length > 0)
@@ -49,7 +48,6 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel)
 
 function Banner(info, status) {
-    console.log(info)
     return (
         <div className={`carousel-item ${status}`}>
             <div className="row">

@@ -54,6 +54,12 @@ function SeccionPreview(props) {
         })
     }
 
+    function youtube_parser(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return (match && match[7].length == 11) ? match[7] : false;
+    }
+
     return (
         <div className="br-section-wrapper">
             <h1>{props.bodyNews.titulo}</h1>
@@ -64,14 +70,17 @@ function SeccionPreview(props) {
                     {props.bodyNews.imagen.map(el => <img src={el} className="imagenBanner" />)}
                 </AliceCarousel>
             }
-            <iframe src='https://www.youtube.com/embed/E7wJTI-1dvQ'
-                width="100%"
-                height="400px"
-                frameBorder='0'
-                allow='autoplay; encrypted-media'
-                allowFullScreen
-                title='video'
-            />
+            {
+                props.bodyNews.video &&
+                <iframe src={`https://www.youtube.com/embed/${youtube_parser(props.bodyNews.video)}`}
+                    width="100%"
+                    height="400px"
+                    frameBorder='0'
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen
+                    title='video'
+                />
+            }
             <p className="descripcionNoticia">{props.bodyNews.descripcion}</p>
             {ReactHtmlParser(props.bodyNews.noticia)}
             <p className="autor">Publicado por {props.bodyNews.autor}</p>

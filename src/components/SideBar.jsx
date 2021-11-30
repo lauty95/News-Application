@@ -19,7 +19,7 @@ function SideBar(props) {
             <aside className="widget widget_latestposts">
                 <h3 className="widget-title">ÚLTIMOS POSTS</h3>
                 {
-                    props.popular.slice(0, 5).map(n => miniNew(n.imagen, n.titulo, n.createdAt, n.id))
+                    props.popular.slice(0, 5).map(n => miniNew(n.poster, n.titulo, n.createdAt, n.id))
                 }
             </aside>
             <aside className="widget widget_categories text-center">

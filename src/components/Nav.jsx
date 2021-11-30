@@ -19,7 +19,7 @@ function Nav() {
                                 </ul>
                             </div>
                             <div className="col-lg-4 logo-block">
-                                <Link to="/home">minimag</Link>
+                                <Link to="/">minimag</Link>
                             </div>
                             {/* <div className="col-lg-4 col-6">
                                 <ul className="top-right user-info">

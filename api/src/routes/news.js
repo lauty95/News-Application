@@ -12,13 +12,12 @@ const {
 } = process.env;
 
 const config = {
-    host: HOST,
+    host: 'c2410346.ferozo.com',
     port: '21',
-    user: USER,
-    password: PASSWORD,
+    user: 'c2410346',
+    password: 'LU65nubire',
     secure: false
 }
-
 
 const areas = ['Mantenimiento', 'Recursos Humanos', 'Tecnología', 'Gerencia', 'Nueva área']
 
@@ -75,7 +74,8 @@ router.post("/newPost", async (req, res) => {
                 imagen,
                 video,
                 autor,
-                destacar
+                destacar,
+                poster: imagen[0]
             })
                 .then(res.status(200).send({ msg: 'created', newNoticia }))
         } catch (e) {
@@ -136,7 +136,8 @@ router.put('/updateNew', async (req, res) => {
             imagen,
             autor,
             destacar,
-            video
+            video,
+            poster: imagen[0]
         },
             {
                 where: {
@@ -149,11 +150,18 @@ router.put('/updateNew', async (req, res) => {
     }
 })
 
+const c = new FTP();
+c.on('error', () => {
+    console.log('cerrando sesion FTP')
+    return c.end()
+})
+c.connect(config)
+
 const upload = multer({
     storage: new FTPStorage({
         basepath: `image_uploads/`,
-        // connection: new FTP().connect(config),
-        ftp: config,
+        connection: c,
+        // ftp: config,
         destination: function (req, file, options, cb) {
             const { originalname } = file;
             const ext = originalname.split(".").pop()

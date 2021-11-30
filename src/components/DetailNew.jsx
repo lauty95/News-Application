@@ -15,6 +15,12 @@ function DetailNew(props) {
             .then(r => setNoticia(r.data))
     }, [id])
 
+    function youtube_parser(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return (match && match[7].length == 11) ? match[7] : false;
+    }
+
     return (
         noticia.titulo ?
             <div className="col-lg-12 col-md-6 content-area">
@@ -26,14 +32,17 @@ function DetailNew(props) {
                         {noticia.imagen.map(el => <img src={el} className="imagenBannerDetail" />)}
                     </AliceCarousel>
                 }
-                <iframe src='https://www.youtube.com/embed/E7wJTI-1dvQ'
-                    width="100%"
-                    height="550px"
-                    frameBorder='0'
-                    allow='autoplay; encrypted-media'
-                    allowFullScreen
-                    title='video'
-                />
+                {
+                    noticia.video &&
+                    <iframe src={`https://www.youtube.com/embed/${youtube_parser(noticia.video)}`}
+                        width="100%"
+                        height="550px"
+                        frameBorder='0'
+                        allow='autoplay; encrypted-media'
+                        allowFullScreen
+                        title='video'
+                    />
+                }
                 <p className="descripcionNoticia">{noticia.descripcion}</p>
                 {ReactHtmlParser(noticia.noticia)}
                 <p className="autor">Publicado por {noticia.autor}</p>
