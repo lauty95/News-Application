@@ -92,7 +92,7 @@ function SeccionEdicion(props) {
             return newValue
         })
     }
-    console.log(data)
+
     const handleChangeImage = event => {
         const files = event.target.files
         const fd = new FormData()

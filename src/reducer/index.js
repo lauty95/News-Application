@@ -47,7 +47,7 @@ function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 banner: payload.res,
-                // news: state.news.concat(payload.sobra)
+                sobras: payload.sobra
             }
         case FILTRAR:
             const filtrado = state.backUpNews.filter(el => el.area === payload)

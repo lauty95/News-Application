@@ -14,6 +14,7 @@ function News(props) {
         props.news.length > 0 ?
             <div className="col-lg-8 col-md-6 content-area">
                 <div className="row">
+                    {props.sobras && props.sobras.map(n => miniNew(n.area, n.descripcion, n.poster, n.noticia, n.titulo, n.createdAt, n.autor, n.id))}
                     {props.news.map(n => miniNew(n.area, n.descripcion, n.poster, n.noticia, n.titulo, n.createdAt, n.autor, n.id))}
                 </div>
             </div>
@@ -49,7 +50,7 @@ function miniNew(area, descripcion, imagen, noticia, titulo, createdAt, autor, i
                         <span className="byline">by {autor}</span>
                         <span className="post-date">{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
                     </div>
-                    <Link to={`/noticia/${id}`}><img src={imagen} alt="Post" /></Link>
+                    <Link to={`/noticia/${id}`}><img src={imagen} alt="Post" className="imagenComponentNews" /></Link>
                 </div>
                 <div className="entry-content">
                     <div className="entry-header">

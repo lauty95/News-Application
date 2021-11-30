@@ -131,3 +131,13 @@ code {
   height: 225px;
   width: 100%;
 }
+
+.imagenComponentNews{
+  width: 100%;
+  height: 100%;
+}
+
+.entry-cover {
+  overflow-y: hidden;
+  max-height: 230px;
+}
