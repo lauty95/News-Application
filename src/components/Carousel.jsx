@@ -63,6 +63,7 @@ function Banner(info, status) {
                 </div>
                 <div className="col-lg-4 col-sm-12 post-block post-thumb">
                     <div className="post-box mini">
+                        {console.log(info[1].imagen[0])}
                         <img className="imagenBannerDerecha" src={info[1].imagen[0]} alt="Slide" />
                         <div className="entry-content">
                             <span className="post-category">{info[1].categoria}</span>

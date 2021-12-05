@@ -7,9 +7,6 @@ const FTP = require('ftp');
 const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
-const {
-    HOST, USER, PASSWORD,
-} = process.env;
 
 const config = {
     host: 'c2410346.ferozo.com',
@@ -153,13 +150,14 @@ router.put('/updateNew', async (req, res) => {
 const c = new FTP();
 c.on('error', () => {
     console.log('cerrando sesion FTP')
-    return c.end()
+    c.end()
+    console.log('reiniciando sesion FTP')
+    c.connect(config)
 })
 c.connect(config)
-
 const upload = multer({
     storage: new FTPStorage({
-        basepath: `image_uploads/`,
+        // basepath: `image_uploads/`,
         connection: c,
         // ftp: config,
         destination: function (req, file, options, cb) {
