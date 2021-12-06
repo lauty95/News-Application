@@ -21,8 +21,6 @@ function SeccionEdicion(props) {
         noticia: ''
     })
 
-    const baseURL = "http://c2410346.ferozo.com/image_uploads/"
-
     useEffect(() => {
         props.getAreas()
         props.editar && setData(props.noticiaEditable)
@@ -111,6 +109,8 @@ function SeccionEdicion(props) {
             }))
     }
 
+    console.log(data.imagen)
+
     return (
         <div className="br-section-wrapper">
             <h6 className="br-section-label">Editor de Noticias</h6>
@@ -167,7 +167,7 @@ function SeccionEdicion(props) {
                             data.imagen.map(foto =>
                                 <>
                                     <div className="botonEliminar">
-                                        <img src={baseURL + foto} alt="foto de la noticia" />
+                                        <img src={foto} alt="foto de la noticia" />
                                         <button name={foto} onClick={(e) => quitarImagen(e)}>X</button>
                                     </div>
                                 </>)

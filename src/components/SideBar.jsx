@@ -82,10 +82,9 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
 
 function miniNew(imagen, titulo, createdAt, id) {
-    const baseURL = "http://c2410346.ferozo.com/image_uploads/"
     return (
         <div className="latest-content">
-            <Link to={`/home/noticia/${id}`}><i><img src={baseURL + imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></Link>
+            <Link to={`/home/noticia/${id}`}><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></Link>
             <h5><Link to={`/home/noticia/${id}`}>{titulo}</Link></h5>
             <span>{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
         </div>

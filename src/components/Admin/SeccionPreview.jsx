@@ -59,7 +59,6 @@ function SeccionPreview(props) {
         var match = url.match(regExp);
         return (match && match[7].length == 11) ? match[7] : false;
     }
-    const baseURL = "http://c2410346.ferozo.com/image_uploads/"
 
     return (
         <div className="br-section-wrapper">
@@ -68,7 +67,7 @@ function SeccionPreview(props) {
             {
                 props.bodyNews.imagen &&
                 <AliceCarousel>
-                    {props.bodyNews.imagen.map(el => <img src={baseURL + el} className="imagenBanner" />)}
+                    {props.bodyNews.imagen.map(el => <img src={el} className="imagenBanner" />)}
                 </AliceCarousel>
             }
             {

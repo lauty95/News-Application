@@ -12,7 +12,7 @@ import { SnackbarProvider } from 'notistack';
 dotenv.config()
 const back = 'https://rodri-news.herokuapp.com'
 const local = "http://localhost:3001"
-axios.defaults.baseURL = back
+axios.defaults.baseURL = local
 
 ReactDOM.render(
   <React.StrictMode>
