@@ -159,12 +159,12 @@ const upload = multer({
     storage: new FTPStorage({
         // basepath: `image_uploads/`,
         connection: c,
-        // ftp: config,
+        ftp: config,
         destination: function (req, file, options, cb) {
             const { originalname } = file;
             const ext = originalname.split(".").pop()
-            const path = `public_html/image_uploads/${uuidv4()}.${ext}`;
-            fs.mkdirSync(path, { recursive: true });
+            const path = `public_html/images/${uuidv4()}.${ext}`;
+            // fs.mkdirSync(path, { recursive: true });
             cb(null, path)
 
         }
@@ -174,7 +174,7 @@ const upload = multer({
 router.post('/uploadImages', upload, async (req, res) => {
     const files = req.files
     var dir = []
-    files.forEach(el => dir.push(`${el.path.split("/").pop()}`))
+    files.forEach(el => dir.push(`http://c2410346.ferozo.com/images/${el.path.split("/").pop()}`))
     res.status(200).json({ dir }).end()
 })
 
