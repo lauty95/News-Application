@@ -50,7 +50,7 @@ function miniNew(area, descripcion, imagen, noticia, titulo, createdAt, autor, i
                         <span className="byline">by {autor}</span>
                         <span className="post-date">{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
                     </div>
-                    <Link to={`/noticia/${id}`}><img src={imagen} alt="Post" className="imagenComponentNews" /></Link>
+                    <Link to={`/noticia/${id}`}><img src={`http://c2410346.ferozo.com/image_uploads/${imagen}`} alt="Post" className="imagenComponentNews" /></Link>
                 </div>
                 <div className="entry-content">
                     <div className="entry-header">

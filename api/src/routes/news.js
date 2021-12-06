@@ -174,7 +174,7 @@ const upload = multer({
 router.post('/uploadImages', upload, async (req, res) => {
     const files = req.files
     var dir = []
-    files.forEach(el => dir.push(`http://c2410346.ferozo.com/image_uploads/${el.path.split("/").pop()}`))
+    files.forEach(el => dir.push(`${el.path.split("/").pop()}`))
     res.status(200).json({ dir }).end()
 })
 
