@@ -116,7 +116,7 @@ function Editar(props) {
                             {/* <div>Attentively and carefully made by ThemePixels.</div> */}
                         </div>
                         <div className="footer-right d-flex align-items-center">
-                            <a href="http://browsing.com.ar"><span className="tx-uppercase mg-r-10">BROWSING</span></a>
+                            <a href="http://browsing.com.ar" target="_blank"><span className="tx-uppercase mg-r-10">BROWSING</span></a>
                         </div>
                     </footer>
                 </div>
