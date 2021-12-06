@@ -17,15 +17,12 @@ function Footer() {
             {/* Container */}
             <div className="containerFtrSocial">
                 <ul className="ftr-social">
-                    <li><a href="#" title="Facebook"><i className="fa fa-facebook" />Facebook</a></li>
-                    <li><a href="#" title="Twitter"><i className="fa fa-twitter" />twitter</a></li>
-                    <li><a href="#" title="Instagram"><i className="fa fa-instagram" />Instagram</a></li>
-                    <li><a href="#" title="Google Plus"><i className="fa fa-google-plus" />Google plus</a></li>
-                    <li><a href="#" title="Pinterest"><i className="fa fa-pinterest-p" />pinterest</a></li>
-                    <li><a href="#" title="Youtube"><i className="fa fa-youtube" />youtube</a></li>
+                <li><a href="https://www.facebook.com/grupospaggiari" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
+                    <li><a href="https://www.instagram.com/GrupoSpaggiari/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCHg9fpcoZ5OzmdAD-o9EPmg" target="_blank" title><i className="ion-social-youtube-outline" /></a></li>
                 </ul>
                 <div className="copyright">
-                    <p>Copyright @ 2017 MINIMAG</p>
+                    <p>Copyright @ 2021 Grupo Spaggiari</p>
                 </div>
             </div>{/* Container /- */}
         </footer>

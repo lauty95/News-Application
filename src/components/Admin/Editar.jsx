@@ -112,7 +112,7 @@ function Editar(props) {
                     </div>
                     <footer className="br-footer">
                         <div className="footer-left">
-                            <div className="mg-b-2">Copyright © 2021. Spaggiari News. All Rights Reserved.</div>
+                            <div className="mg-b-2">Copyright © 2021. Grupo Spaggiari News. All Rights Reserved.</div>
                             {/* <div>Attentively and carefully made by ThemePixels.</div> */}
                         </div>
                         <div className="footer-right d-flex align-items-center">
