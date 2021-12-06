@@ -5,6 +5,7 @@ import * as actionCreators from './../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 function Carousel(props) {
     function sacarUno(info) {
@@ -48,6 +49,8 @@ const mapDispatchToProps = function (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel)
 
 function Banner(info, status) {
+    fetch('http://c2410346.ferozo.com/image_uploads/f9e40963-0a22-4a75-b7af-3e56c9db070d.png', { mode: 'no-cors' })
+        .then(r => console.log(r))
     return (
         <div className={`carousel-item ${status}`}>
             <div className="row">
@@ -63,7 +66,6 @@ function Banner(info, status) {
                 </div>
                 <div className="col-lg-4 col-sm-12 post-block post-thumb">
                     <div className="post-box mini">
-                        {console.log(info[1].imagen[0])}
                         <img className="imagenBannerDerecha" src={info[1].imagen[0]} alt="Slide" />
                         <div className="entry-content">
                             <span className="post-category">{info[1].categoria}</span>
