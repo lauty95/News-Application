@@ -16,15 +16,15 @@ function Footer() {
             </div> */}
             {/* Container */}
             <div className="containerFtrSocial">
-                <ul className="ftr-social">
+                {/* <ul className="ftr-social">
                 <li><a href="https://www.facebook.com/grupospaggiari" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
                     <li><a href="https://www.instagram.com/GrupoSpaggiari/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
                     <li><a href="https://www.youtube.com/channel/UCHg9fpcoZ5OzmdAD-o9EPmg" target="_blank" title><i className="ion-social-youtube-outline" /></a></li>
-                </ul>
+                </ul> */}
                 <div className="copyright">
-                    <p>Copyright @ 2021 Grupo Spaggiari</p>
+                    <p>Copyright @ 2022 Grupo Spaggiari</p>
                 </div>
-            </div>{/* Container /- */}
+            </div>
         </footer>
     )
 }

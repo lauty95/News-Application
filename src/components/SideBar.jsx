@@ -81,8 +81,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SideBar)
 function miniNew(imagen, titulo, createdAt, id) {
     return (
         <div className="latest-content">
-            <Link to={`/home/noticia/${id}`}><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></Link>
-            <h5><Link to={`/home/noticia/${id}`}>{titulo}</Link></h5>
+            <Link to={`/noticia/${id}`}><i><img src={imagen} width="110px" className="wp-post-image" alt="imagen de noticia destacada" /></i></Link>
+            <h5><Link to={`/noticia/${id}`}>{titulo}</Link></h5>
             <span>{createdAt.split('T')[0].split("-").reverse().join("/")}</span>
         </div>
     )

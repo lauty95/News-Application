@@ -59,8 +59,8 @@ function Banner(info, status) {
                         <img className="imagenBannerCentro" src={info[0].imagen[0]} alt="Slide" />
                         <div className="entry-content">
                             <span className="post-category">{info[0].categoria}</span>
-                            <h3><Link to={`/home/noticia/${info[0].id}`}>{info[0].titulo}</Link></h3>
-                            <Link to={`/home/noticia/${info[0].id}`}>Leer Mas</Link>
+                            <h3><Link to={`/noticia/${info[0].id}`}>{info[0].titulo}</Link></h3>
+                            <Link to={`/noticia/${info[0].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                 </div>
@@ -69,16 +69,16 @@ function Banner(info, status) {
                         <img className="imagenBannerDerecha" src={info[1].imagen[0]} alt="Slide" />
                         <div className="entry-content">
                             <span className="post-category">{info[1].categoria}</span>
-                            <h3><Link to={`/home/noticia/${info[1].id}`}>{info[1].titulo}</Link></h3>
-                            <Link to={`/home/noticia/${info[1].id}`}>Leer Mas</Link>
+                            <h3><Link to={`/noticia/${info[1].id}`}>{info[1].titulo}</Link></h3>
+                            <Link to={`/noticia/${info[1].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                     <div className="post-box mini">
                         <img className="imagenBannerDerecha" src={info[2].imagen[0]} alt="Slide" />
                         <div className="entry-content">
                             <span className="post-category">{info[2].categoria}</span>
-                            <h3><Link to={`/home/noticia/${info[2].id}`}>{info[2].titulo}</Link></h3>
-                            <Link to={`/home/noticia/${info[2].id}`}>Leer Mas</Link>
+                            <h3><Link to={`/noticia/${info[2].id}`}>{info[2].titulo}</Link></h3>
+                            <Link to={`/noticia/${info[2].id}`}>Leer Mas</Link>
                         </div>
                     </div>
                 </div>

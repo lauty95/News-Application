@@ -796,13 +796,13 @@ span {
 }
 
 .copyright {
-	margin-top: 40px;
+	margin-top: 10px;
 	padding-top: 29px;
 	padding-bottom: 10px;
 	text-align: center;
 	position: relative;
 }
-
+/* 
 .copyright::before {
 	background-color: #e1e1e1;
 	content: "";
@@ -813,7 +813,7 @@ span {
 	right: 0;
 	top: 0;
 	width: 30px;
-}
+} */
 
 .copyright>p {
 	font-size: 14px;
