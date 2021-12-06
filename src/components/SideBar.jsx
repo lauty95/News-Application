@@ -43,12 +43,9 @@ function SideBar(props) {
             <aside className="widget widget_social">
                 <h3 className="widget-title">SÍGUENOS</h3>
                 <ul>
-                    <li><a href="#" title><i className="ion-social-facebook-outline" /></a></li>
-                    <li><a href="#" title><i className="ion-social-twitter-outline" /></a></li>
-                    <li><a href="#" title><i className="ion-social-instagram-outline" /></a></li>
-                    <li><a href="#" title><i className="ion-social-googleplus-outline" /></a></li>
-                    <li><a href="#" title><i className="ion-social-pinterest-outline" /></a></li>
-                    <li><a href="#" title><i className="ion-social-vimeo-outline" /></a></li>
+                    <li><a href="https://www.facebook.com/grupospaggiari" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
+                    <li><a href="https://www.instagram.com/GrupoSpaggiari/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCHg9fpcoZ5OzmdAD-o9EPmg" target="_blank" title><i className="ion-social-youtube-outline" /></a></li>
                 </ul>
             </aside>
             {/* <aside className="widget widget_newsletter">

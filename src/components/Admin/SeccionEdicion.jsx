@@ -208,7 +208,7 @@ function SeccionEdicion(props) {
                 props.editar ?
                     <>
                         <div class="form-layout-footer spaceBetweenButtons">
-                            <button class="btn btn-info" onClick={handleEdit}>Editar</button>
+                            <button class="btn btn-info" onClick={handleEdit}>Guardar</button>
                             <button class="btn btn-info" onClick={handleBack}>Volver</button>
                         </div>
                     </>

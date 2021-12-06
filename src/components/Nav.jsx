@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import logo from './../assets/logo.png'
 
 function Nav() {
     return (
@@ -13,13 +14,13 @@ function Nav() {
                         <div className="row">
                             <div className="col-lg-4 col-6">
                                 <ul className="top-social">
-                                    <li><a href="#" title="Facebook"><i className="ion-social-facebook-outline" /></a></li>
-                                    <li><a href="#" title="Twitter"><i className="ion-social-twitter-outline" /></a></li>
-                                    <li><a href="#" title="Instagram"><i className="ion-social-instagram-outline" /></a></li>
+                                    <li><a href="https://www.facebook.com/grupospaggiari" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
+                                    <li><a href="https://www.instagram.com/GrupoSpaggiari/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
+                                    <li><a href="https://www.youtube.com/channel/UCHg9fpcoZ5OzmdAD-o9EPmg" target="_blank" title><i className="ion-social-youtube-outline" /></a></li>
                                 </ul>
                             </div>
                             <div className="col-lg-4 logo-block">
-                                <Link to="/">minimag</Link>
+                                <Link to="/"><img src={logo} alt="logo" /></Link>
                             </div>
                             {/* <div className="col-lg-4 col-6">
                                 <ul className="top-right user-info">

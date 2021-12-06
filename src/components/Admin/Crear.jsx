@@ -5,6 +5,7 @@ import * as actionCreators from './../../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import SeccionPreview from './SeccionPreview';
+import logo from './../../assets/logo.png'
 
 function Crear(props) {
     useEffect(() => {
@@ -14,7 +15,8 @@ function Crear(props) {
     return (
         <div>
             {/* ########## START: LEFT PANEL ########## */}
-            <div className="br-logo"><a href><span>[</span>Rodri <i>news</i><span>]</span></a></div>
+            {/* <div className="br-logo"><a href><span>[</span>Rodri <i>news</i><span>]</span></a></div> */}
+            <div className="br-logo"><a href><img src={logo} alt="logo" /></a></div>
             <div className="br-sideleft sideleft-scrollbar">
                 <label className="sidebar-label pd-x-10 mg-t-20 op-3">Navegación</label>
                 <ul className="br-sideleft-menu">
@@ -60,13 +62,11 @@ function Crear(props) {
                 </div>
                 <footer className="br-footer">
                     <div className="footer-left">
-                        <div className="mg-b-2">Copyright © 2021. Rodri News. All Rights Reserved.</div>
+                        <div className="mg-b-2">Copyright © 2021. Spaggiari News. All Rights Reserved.</div>
                         {/* <div>Attentively and carefully made by ThemePixels.</div> */}
                     </div>
                     <div className="footer-right d-flex align-items-center">
-                        <span className="tx-uppercase mg-r-10">Compartir:</span>
-                        <a target="_blank" className="pd-x-5" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//themepixels.me/bracketplus/intro"><i className="fab fa-facebook tx-20" /></a>
-                        <a target="_blank" className="pd-x-5" href="https://twitter.com/home?status=Bracket%20Plus,%20your%20best%20choice%20for%20premium%20quality%20admin%20template%20from%20Bootstrap.%20Get%20it%20now%20at%20http%3A//themepixels.me/bracketplus/intro"><i className="fab fa-twitter tx-20" /></a>
+                        <a href="http://browsing.com.ar"><span className="tx-uppercase mg-r-10">BROWSING</span></a>
                     </div>
                 </footer>
             </div>
