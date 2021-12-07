@@ -113,26 +113,27 @@ code {
   width: 200px;
 }
 
-.imagenBanner{
+.imagenBanner {
   width: 100%;
   height: 450px;
 }
 
-.imagenBannerDetail{
+.imagenBannerDetail {
   width: 100%;
   height: 550px;
 }
 
-.imagenBannerCentro{
+.imagenBannerCentro {
   height: 454px;
   width: 100%;
 }
-.imagenBannerDerecha{
+
+.imagenBannerDerecha {
   height: 225px;
   width: 100%;
 }
 
-.imagenComponentNews{
+.imagenComponentNews {
   width: 100%;
   height: 100%;
 }
@@ -141,3 +142,36 @@ code {
   overflow-y: hidden;
   max-height: 230px;
 }
+
+.categorias {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nombre-categoria {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.nombre-categoria span {
+  margin-left: 20px;
+  color: blue;
+  cursor: pointer;
+}
+
+
+.nuevos-valores-categoria{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.nuevos-valores-categoria input{
+  width: 80%;
+}
+

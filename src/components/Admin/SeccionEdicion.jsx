@@ -124,7 +124,7 @@ function SeccionEdicion(props) {
                     <div className="form-group mg-b-10-force">
                         <select value={data.area} className="form-control select2 selectorArea" name="area" data-placeholder="Área" onChange={handleChange}>
                             <option label="Área" />
-                            {props.areas.map(el => <option value={el}>{el}</option>)}
+                            {props.areas.map(el => <option value={el.categoria}>{el.categoria}</option>)}
                         </select>
                     </div>
                 </div>

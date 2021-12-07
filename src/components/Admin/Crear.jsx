@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import SeccionEdicion from './SeccionEdicion';
 import * as actionCreators from './../../actions'
 import { connect } from 'react-redux'
@@ -27,8 +26,9 @@ function Crear(props) {
                         </a>
 
                         <ul className="br-menu-sub">
-                            <li className="sub-item"><div className="sub-link">Crear Nueva Noticia</div></li>
+                            <li className="sub-item"><a href="/admin/crear" className="sub-link">Crear Nueva Noticia</a></li>
                             <li className="sub-item"><a href="/admin/editar" className="sub-link">Modificar Noticias</a></li>
+                            <li className="sub-item"><a href="/admin/categorias" className="sub-link">Modificar Categorías</a></li>
                         </ul>
                     </li>
                 </ul>

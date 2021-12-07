@@ -26,7 +26,7 @@ function SideBar(props) {
                 <h3 className="widget-title">CATEGORÍAS</h3>
                 <ul>
                     <li><a title={'todos'} onClick={() => handleFilter('Todos')} >TODOS</a></li>
-                    {props.areas.map(el => <li><a title={el} onClick={() => handleFilter(el)}>{el}</a></li>)}
+                    {props.areas.map(el => <li><a title={el.categoria} onClick={() => handleFilter(el.categoria)}>{el.categoria}</a></li>)}
                 </ul>
             </aside>
             {/* <aside className="widget widget_instagram">

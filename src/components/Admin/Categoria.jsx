@@ -1,65 +1,36 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal } from 'react-bootstrap';
-import axios from 'axios';
 import * as actionCreators from './../../actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import SeccionEdicion from './SeccionEdicion';
 import logo from './../../assets/logo.png'
+import axios from 'axios';
 
-function Editar(props) {
-    const [noticias, setNoticias] = useState([])
-    const [show, setShow] = useState(false);
-    const [data, setData] = useState({})
-    const [refresh, setRefresh] = useState(false)
-    const [seccionEdicion, setSeccionEdicion] = useState(false)
-    const [noticiaFiltrada, setNoticiaFiltrada] = useState([])
+function Categoria(props) {
+
+    const [categoria, setCategoria] = useState([])
+    const [data, setData] = useState("")
+    const [render, setRender] = useState(false)
 
     useEffect(() => {
-        axios.get('/getAll')
-            .then(r => setNoticias(r.data))
-    }, [refresh])
+        axios.get('/areas')
+            .then(r => setCategoria(r.data))
+    }, [render])
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const eliminarNoticia = () => {
-        handleClose()
-        setRefresh(!refresh)
-        props.deleteNew(data.id)
+    const eliminar = (id) => {
+        axios.post('/deleteArea', { id })
+            .then(() => setRender(!render))
     }
 
-    const buscarNoticiaPorId = (id) => {
-        setSeccionEdicion(!seccionEdicion)
-        const filtro = noticias.filter(el => el.id === id)
-        setNoticiaFiltrada(filtro[0])
+    const nuevaCategoria = e => {
+        e.preventDefault()
+        axios.post('/newArea', { data })
+            .then(() => setRender(!render))
+        setData("")
     }
 
-    function tarjetaNoticia({ id, poster, titulo, descripcion, createdAt, destacar }) {
-        return (
-            <>
-                <div className={destacar ? `tarjetaNoticia destacar` : "tarjetaNoticia"}>
-                    <div className="descripcion">
-                        <div>
-                            <img src={poster} alt="imagen descriptiva de la noticia" />
-                        </div>
-                        <div>
-                            <h2>{titulo}</h2>
-                            <p>{descripcion}</p>
-                            {createdAt.split('T')[0].split("-").reverse().join("/")}
-                        </div>
-                    </div>
-                    <div class="opciones">
-                        <button class="btn btn-info" onClick={() => buscarNoticiaPorId(id)} >Editar</button>
-                        <button class="btn btn-info" onClick={() => {
-                            handleShow()
-                            setData({ id, titulo })
-                        }
-                        } >Eliminar</button>
-                    </div>
-                </div>
-            </>
-        )
+    const handleChange = e => {
+        e.preventDefault()
+        setData(e.target.value)
     }
 
     return (
@@ -78,7 +49,7 @@ function Editar(props) {
                             </div>
                             <ul className="br-menu-sub">
                                 <li className="sub-item"><a href="/admin/crear" className="sub-link">Crear Nueva Noticia</a></li>
-                                <li className="sub-item"><div className="sub-link">Modificar Noticias</div></li>
+                                <li className="sub-item"><a href="/admin/editar" className="sub-link">Modificar Noticias</a></li>
                                 <li className="sub-item"><a href="/admin/categorias" className="sub-link">Modificar Categorías</a></li>
                             </ul>
                         </li>
@@ -99,18 +70,29 @@ function Editar(props) {
                     <div className="br-pagetitle">
                         <i className="icon ion-ios-gear-outline" />
                         <div>
-                            <h4>Editor de Noticias</h4>
-                            <p className="mg-b-0">Edita y/o elimina noticas en esta sección</p>
+                            <h4>Editor de Categorías</h4>
+                            <p className="mg-b-0">Edita crea o elimina categorías en esta sección</p>
                         </div>
                     </div>
                     <div className="br-pagebody">
-                        <div className={!seccionEdicion ? "br-section-wrapper" : "seccionEdicion"}>
-                            {noticias.length > 0 &&
-                                noticias.map(noticia => tarjetaNoticia(noticia))
-                            }
-                        </div>
-                        <div className={!seccionEdicion && "seccionEdicion"}>
-                            <SeccionEdicion editar={seccionEdicion} noticiaEditable={noticiaFiltrada} />
+                        <div className="br-section-wrapper">
+                            <div className="categorias">
+                                <div className="nuevos-valores-categoria">
+                                    <input value={data} className="form-control" type="text" name="categoria" placeholder="Nombre de la categoría" onChange={handleChange} />
+                                    <button class="btn btn-info" onClick={nuevaCategoria}>Guardar</button>
+                                </div>
+                                {
+                                    categoria.length > 0 &&
+                                    categoria.map(el =>
+                                        <div className="nombre-categoria">
+                                            {el.categoria}
+                                            <div className="opciones">
+                                                <span onClick={() => eliminar(el.id)}>Eliminar</span>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            </div>
                         </div>
                     </div>
                     <footer className="br-footer">
@@ -124,20 +106,6 @@ function Editar(props) {
                     </footer>
                 </div>
             </div>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
-                    <Modal.Title>Atencion!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Estás seguro que quieres borrar esta noticia <b>{data.titulo}</b>?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        No
-                    </Button>
-                    <Button variant="primary" onClick={eliminarNoticia}>
-                        Si, estoy seguro
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </>
     );
 }
@@ -153,4 +121,4 @@ const mapDispatchToProps = function (dispatch) {
     return bindActionCreators(actionCreators, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editar)
+export default connect(mapStateToProps, mapDispatchToProps)(Categoria)
