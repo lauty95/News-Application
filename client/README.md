@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# App de Noticias
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proyecto creado con [React](https://github.com/facebook/create-react-app), Node Js, CSS, HTML, Express, Sequelize, PostgreSQL, Redux, Bootstrap
 
-## Available Scripts
+## Para probar el proyecto
 
-In the project directory, you can run:
+Puedes descargarlo/forkearlo e instalar las dependencias de la carpeta Client y Api.
+
+Luego crear un archivo `.env` en la carpeta Api y configurar las siguientes variables para conectarte con tu base de datos de PostgreSQL y a un servidor FTP (donde se suben las imagenes):
+
+```
+DB_USER=NOMBRE_DE_USUARIO
+DB_PASSWORD=PASSWORD
+DB_HOST=localhost
+PORT=3001
+HOST_USER=USUARIO_FTP
+HOST_PASSWORD=PASSWORD_FTP
+HOST=localhost
+```
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Una vez instaladas las dependencias y configurado el archivo `.env` corre los siguientes comandos, cada uno en una consola distinta:
+Consola 1
+`cd /api`
+`npm start`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Consola 2
+`cd /client`
+`npm start`
 
-### `npm test`
+El cliente correrá en la siguiente dirección [http://localhost:3000](http://localhost:3000)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##
+### Sección Administrador
 
-### `npm run build`
+El admin corre bajo la ruta [/admin/crear](http://localhost:3000/admin/crear)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://user-images.githubusercontent.com/38353324/146069295-74e0d8f9-8b87-405e-8c88-57c6f1866dd2.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![image](https://user-images.githubusercontent.com/38353324/146069366-d404e67b-545d-421f-b031-3fd5ea9af4fb.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+100% responsive
+#
+Cuenta con un Preview antes de ser publicado
 
-### `npm run eject`
+![image](https://user-images.githubusercontent.com/38353324/146069459-33fb1b09-e7e9-4ce6-b5b6-73d960fa7c4d.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#
+### Sección Categorías
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Puedes crear y eliminar categorías
+![image](https://user-images.githubusercontent.com/38353324/146069870-08e8ed3b-394e-49a5-8e0b-6acf401d5ef3.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#
+### Sección Edición de noticias
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![image](https://user-images.githubusercontent.com/38353324/146070380-0d767625-46fb-4386-aa2f-ff8a82fde3c8.png)
 
-## Learn More
+#
+### Vista para el usuario
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![image](https://user-images.githubusercontent.com/38353324/146070325-1f86ed7f-d073-4d12-9588-cb8c87674de1.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#
+### Detalles de la noticia
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://user-images.githubusercontent.com/38353324/146070610-1fde93b8-5296-449f-b285-8491ea2f2e84.png)
