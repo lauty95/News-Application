@@ -109,8 +109,6 @@ function SeccionEdicion(props) {
             }))
     }
 
-    console.log(data.imagen)
-
     return (
         <div className="br-section-wrapper">
             <h6 className="br-section-label">Editor de Noticias</h6>
