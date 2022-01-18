@@ -14,13 +14,17 @@ function Nav() {
                         <div className="row">
                             <div className="col-lg-4 col-6">
                                 <ul className="top-social">
-                                    <li><a href="https://www.facebook.com/grupospaggiari" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
-                                    <li><a href="https://www.instagram.com/GrupoSpaggiari/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
-                                    <li><a href="https://www.youtube.com/channel/UCHg9fpcoZ5OzmdAD-o9EPmg" target="_blank" title><i className="ion-social-youtube-outline" /></a></li>
+                                    <li><a href="https://www.facebook.com/lauty.juarez.988373/" target="_blank" title><i className="ion-social-facebook-outline" /></a></li>
+                                    <li><a href="https://www.instagram.com/lautyj95/" target="_blank" title><i className="ion-social-instagram-outline" /></a></li>
+                                    <li><a href="https://www.linkedin.com/in/lauty95/" target="_blank" title><i className="ion-social-linkedin-outline" /></a></li>
+                                    <li><a href="https://github.com/lauty95" target="_blank" title><i className="ion-social-github-outline" /></a></li>
                                 </ul>
                             </div>
                             <div className="col-lg-4 logo-block">
                                 <Link to="/"><img src={logo} alt="logo" /></Link>
+                            </div>
+                            <div className="col-lg-4 logo-block">
+                                <Link to="/admin/crear"><h4>Administrador</h4></Link>
                             </div>
                             {/* <div className="col-lg-4 col-6">
                                 <ul className="top-right user-info">

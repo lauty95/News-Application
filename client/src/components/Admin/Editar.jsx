@@ -67,7 +67,7 @@ function Editar(props) {
             <div>
                 {/* ########## START: LEFT PANEL ########## */}
                 {/* <div className="br-logo"><a href="/admin/crear"><span>[</span>Rodri <i>news</i><span>]</span></a></div> */}
-                <div className="br-logo"><a href><img src={logo} alt="logo" /></a></div>
+                <div className="br-logo"><a href="../../"><img src={logo} alt="logo" /></a></div>
                 <div className="br-sideleft sideleft-scrollbar">
                     <label className="sidebar-label pd-x-10 mg-t-20 op-3">Navegación</label>
                     <ul className="br-sideleft-menu">
