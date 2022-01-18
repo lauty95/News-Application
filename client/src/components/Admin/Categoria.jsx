@@ -43,15 +43,22 @@ function Categoria(props) {
                     <label className="sidebar-label pd-x-10 mg-t-20 op-3">Navegación</label>
                     <ul className="br-sideleft-menu">
                         <li className="br-menu-item">
-                            <div className="br-menu-link with-sub">
+                            <a href="/admin/crear" className="br-menu-link">
                                 <i className="menu-item-icon icon ion-ios-paper-outline tx-20" />
-                                <span className="menu-item-label">Crear &amp; Editar</span>
-                            </div>
-                            <ul className="br-menu-sub">
-                                <li className="sub-item"><a href="/admin/crear" className="sub-link">Crear Nueva Noticia</a></li>
-                                <li className="sub-item"><a href="/admin/editar" className="sub-link">Modificar Noticias</a></li>
-                                <li className="sub-item"><a href="/admin/categorias" className="sub-link">Modificar Categorías</a></li>
-                            </ul>
+                                <span className="menu-item-label">Crear Nueva Noticia</span>
+                            </a>
+                            <a href="/admin/editar" className="br-menu-link">
+                                <i className="menu-item-icon icon ion-ios-paper-outline tx-20" />
+                                <span className="menu-item-label">Modificar Noticias</span>
+                            </a>
+                            <a href="/admin/editar" className="br-menu-link">
+                                <i className="menu-item-icon icon ion-ios-paper-outline tx-20" />
+                                <span className="menu-item-label">Modificar Noticias</span>
+                            </a>
+                            <a href="/admin/categorias" className="br-menu-link">
+                                <i className="menu-item-icon icon ion-ios-paper-outline tx-20" />
+                                <span className="menu-item-label">Modificar Categorías</span>
+                            </a>
                         </li>
                     </ul>
                     <br />
