@@ -102,8 +102,9 @@ function SeccionEdicion(props) {
         axios.post('/uploadImages', fd)
             .then(r => setData(prevData => {
                 let nuevoArray = []
+                console.log(r.data.urls)
                 if (data.imagen.length > 0) data.imagen.forEach(el => nuevoArray.push(el))
-                r.data.dir.forEach(el => nuevoArray.push(el))
+                r.data.urls.forEach(el => nuevoArray.push(el.res))
                 const newValue = { ...prevData, imagen: nuevoArray }
                 return newValue
             }))

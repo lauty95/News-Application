@@ -1,25 +1,10 @@
 const { News, Categoria } = require('../db');
 const express = require('express');
 const router = express();
-const multer = require('multer')
-const FTPStorage = require('multer-ftp')
-const FTP = require('ftp');
-const fs = require("fs");
-const { v4: uuidv4 } = require('uuid');
-require('dotenv').config();
-const {
-    HOST_USER, HOST_PASSWORD, HOST
-  } = process.env;
+const cloudinary = require("./../utils/cloudinary")
+const upload = require('./../utils/multer')
 
-const config = {
-    host: HOST,
-    port: '21',
-    user: HOST_USER,
-    password: HOST_PASSWORD,
-    secure: false,
-    connTimeout: 60000,
-    pasvTimeout: 60000,
-}
+const { v4: uuidv4 } = require('uuid');
 
 router.get("/", async (req, res) => {
     try {
@@ -180,38 +165,33 @@ router.put('/updateNew', async (req, res) => {
     }
 })
 
-const c = new FTP();
-
-c.on('error', () => {
-    console.log('cerrando sesion FTP')
-    c.end()
-    console.log('reiniciando sesion FTP')
-    c.connect(config)
-})
-
-c.connect(config)
-
-const upload = multer({
-    storage: new FTPStorage({
-        // basepath: `image_uploads/`,
-        connection: c,
-        ftp: config,
-        destination: function (req, file, options, cb) {
-            const { originalname } = file;
-            const ext = originalname.split(".").pop()
-            const path = `public_html/images/${uuidv4()}.${ext}`;
-            // fs.mkdirSync(path, { recursive: true });
-            cb(null, path)
-
+const cloudinaryImageUploadMethod = async file => {
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(file, (err, res) => {
+            if (err) return res.status(500).send("upload image error")
+            resolve({
+                res: res.secure_url
+            })
         }
+        )
     })
-}).array('imagen')
+}
 
-router.post('/uploadImages', upload, async (req, res) => {
-    const files = req.files
-    var dir = []
-    files.forEach(el => dir.push(`http://c2410346.ferozo.com/images/${el.path.split("/").pop()}`))
-    res.status(200).json({ dir }).end()
+router.post('/uploadImages', upload.array('imagen'), async (req, res) => {
+    const urls = [];
+    const files = req.files;
+
+    try {
+        for (const file of files) {
+            const { path } = file;
+            const newPath = await cloudinaryImageUploadMethod(path);
+            urls.push(newPath);
+        }
+        res.status(200).json({ urls })
+    } catch (err) {
+        console.log(err)
+        res.status(500)
+    }
 })
 
 module.exports = router;
