@@ -1,21 +1,23 @@
 # App de Noticias
 
-Proyecto creado con [React](https://github.com/facebook/create-react-app), Node Js, CSS, HTML, Express, Sequelize, PostgreSQL, Redux, Bootstrap
+Puedes verlo deployado en este [Enlace](https://news-application-ten.vercel.app)
+
+Proyecto creado con [React](https://github.com/facebook/create-react-app), Node Js, CSS, HTML, Express, Sequelize, PostgreSQL, Redux, Bootstrap y Cloudinary
 
 ## Para probar el proyecto
 
 Puedes descargarlo/forkearlo e instalar las dependencias de la carpeta Client y Api.
 
-Luego crear un archivo `.env` en la carpeta Api y configurar las siguientes variables para conectarte con tu base de datos de PostgreSQL y a un servidor FTP (donde se suben las imagenes):
+Luego crear un archivo `.env` en la carpeta Api y configurar las siguientes variables para conectarte con tu base de datos de PostgreSQL y a una cuenta de Cloudinary (donde se suben las imagenes):
 
 ```
 DB_USER=NOMBRE_DE_USUARIO
 DB_PASSWORD=PASSWORD
 DB_HOST=localhost
 PORT=3001
-HOST_USER=USUARIO_FTP
-HOST_PASSWORD=PASSWORD_FTP
-HOST=localhost
+CLOUDINARY_API_NAME=API_CLOUDINARY
+CLOUDINARY_API_KEY=KEY_CLOUDINARY
+CLOUDINARY_API_SECRET=SECRET_CLOUDINARY
 ```
 
 ### `npm start`
